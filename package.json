@@ -1,0 +1,17 @@
+{
+  "name": "aporvis",
+  "version": "1.0.0",
+  "description": "an online visa application system designed to deliver an unparalleled user experience that exceeds the highest visa processing standards",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Adekunle Samuel and co.",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3"
+  }
+}
