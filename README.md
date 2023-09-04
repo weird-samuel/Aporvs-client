@@ -8,7 +8,6 @@ The following contributors participated in the creation of APORVIS:
 
 - Adekunle Samuel Fiyinfoluwa
 - Uba Chinyere Happiness
-- Ebitu Richie Chibuikem
 
 Under the Supervision of Professor Alao Olujimi (https://scholar.google.com/citations?user=jdqIytMAAAAJ&hl=en)
 ## Installation
