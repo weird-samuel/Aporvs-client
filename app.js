@@ -1,7 +1,6 @@
 //The below code implementation was performed in participation of:
 //Adekunle Samuel Fiyinfoluwa
 //Uba Chinyere Happiness
-//Ebitu Richie Chibuikem
 
 //Initialize project dependencies
 require("dotenv").config();
