@@ -10,16 +10,3 @@ The following contributors participated in the creation of APORVIS:
 - Uba Chinyere Happiness
 
 Under the Supervision of Professor Alao Olujimi (https://scholar.google.com/citations?user=jdqIytMAAAAJ&hl=en)
-## Installation
-
-To initialize (install dependencies) this project simply run 
-
-```bash
-npm install or npm i
-```
-
-This is only needed on first-time installation or when an update has been made to the dependencies, after that you can run the project with
-
-```bash
-node app.js
-```
