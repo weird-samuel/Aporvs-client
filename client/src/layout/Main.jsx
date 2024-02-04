@@ -6,7 +6,9 @@ const Main = () => {
   return (
     <SnackbarProvider>
       <Navbar />
-      <Outlet />
+      <div className="min-h-screen">
+        <Outlet />
+      </div>
       <Footer />
     </SnackbarProvider>
   );
