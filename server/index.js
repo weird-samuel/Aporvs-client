@@ -9,7 +9,9 @@ app.use(express.json());
 app.use(cors());
 
 app.get("/", (req, res) => {
-  res.status(234).send("You should not be here, this is the server.");
+  res
+    .status(234)
+    .send("You should not be here, this is the server for APORVIS.");
 });
 
 app.listen(port, () => {

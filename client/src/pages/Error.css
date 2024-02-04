@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css?family=Nunito:400,600,700");
+
+@keyframes floating {
+    from {
+        transform: translateY(0px);
+    }
+
+    65% {
+        transform: translateY(15px);
+    }
+
+    to {
+        transform: translateY(0px);
+    }
+}
+
+html {
+    height: 100%;
+}
+
+.body {
+    background-image: url("https://assets.codepen.io/1538474/star.svg"), linear-gradient(to bottom, #000000, #185465);
+    height: 100vh;
+    margin: 0;
+    background-attachment: fixed;
+    overflow: hidden;
+
+}
+
+
+.logo-404 {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    filter: grayscale(1);
+    left: 0;
+    right: 0;
+    top: 16vmin;
+    width: 30vmin;
+}
+
+@media (max-width: 480px) and (min-width: 320px) {
+    .logo-404 {
+        top: 45vmin;
+    }
+}
+
+.title {
+    color: white;
+    font-family: "Nunito", sans-serif;
+    font-weight: 600;
+    text-align: center;
+    font-size: 5vmin;
+    margin-top: 31vmin;
+}
+
+@media (max-width: 480px) and (min-width: 320px) {
+    .title {
+        margin-top: 65vmin;
+    }
+}
+
+.subtitle {
+    color: white;
+    font-family: "Nunito", sans-serif;
+    font-weight: 400;
+    text-align: center;
+    font-size: 3.5vmin;
+    margin-top: -1vmin;
+    margin-bottom: 9vmin;
+}
+
+@media (max-width: 480px) and (min-width: 320px) {
+    .btn-back {
+        font-size: 3.5vmin;
+    }
+}
+
+.astronaut {
+    position: absolute;
+    left: 12vmin;
+    height: 30vmin;
+    animation: floating 3s infinite ease-in-out;
+}
+
+@media (max-width: 480px) and (min-width: 320px) {
+    .astronaut {
+        top: 2vmin;
+    }
+}
