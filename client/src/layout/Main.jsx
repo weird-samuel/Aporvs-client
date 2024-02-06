@@ -6,7 +6,7 @@ const Main = () => {
   return (
     <SnackbarProvider>
       <Navbar />
-      <div className="min-h-screen">
+      <div className="h-[80vh]">
         <Outlet />
       </div>
       <Footer />

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import logo from "/images/logo-1.png";
 const Navbar = () => {
   return (
-    <section className="bg-white text-black max-w-screen-2xl container mx-auto px-4 xl:px-24">
+    <section className="bg-white text-black max-w-screen-2xl container mx-auto px-4 xl:px-24 h-[10vh]">
       <div className="flex justify-between">
         <div className="logo">
           <Link to={"/"}>
