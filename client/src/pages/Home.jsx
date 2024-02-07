@@ -2,7 +2,7 @@ import DescriptionCards from "./components/DescriptionCards";
 import passportBg from "/images/passportsbg.png";
 const Home = () => {
   return (
-    <section className="h-[100%] w-full max-w-screen-2xl container mx-auto text-black">
+    <section className="h-[120vh] xl:h-[80vh] w-full max-w-screen-2xl container mx-auto text-black">
       {/* <div className="h-[60%] w-full bg-[#185465] relative z-10">
         <div className="w-full h-full">
           <img

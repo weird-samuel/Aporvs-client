@@ -6,9 +6,7 @@ const Main = () => {
   return (
     <SnackbarProvider>
       <Navbar />
-      <div className="h-[80vh]">
-        <Outlet />
-      </div>
+      <Outlet />
       <Footer />
     </SnackbarProvider>
   );

@@ -22,3 +22,15 @@ html::-webkit-scrollbar-track {
 html::-webkit-scrollbar-thumb {
     background-color: #000000;
 }
+
+.home-card-header {
+    @apply flex items-center px-6 py-4 bg-yellow-500
+}
+
+.home-card-text {
+    @apply pt-4 pb-2 bg-[#E8E8E8] px-10 py-5 text-black cursor-text
+}
+
+.home-card {
+    @apply max-w-sm rounded overflow-hidden shadow-lg hover:-translate-y-2 transition-all duration-500
+}

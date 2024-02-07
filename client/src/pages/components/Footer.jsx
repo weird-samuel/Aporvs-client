@@ -4,7 +4,7 @@ const Footer = () => {
   const year = new Date().getFullYear();
   return (
     <section className="text-black bg-gray-400 max-w-screen-2xl container mx-auto px-4 py-4 xl:px-24 h-[10vh]">
-      <div className="flex justify-between">
+      <div className="flex justify-between items-center">
         <p className="flex items-center">
           <FaRegCopyright className="mr-1" />
           {year}, APORVIS. All rights reserved.
