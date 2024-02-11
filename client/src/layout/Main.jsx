@@ -1,13 +1,15 @@
 import { Outlet } from "react-router-dom";
 import { SnackbarProvider } from "notistack";
-import Footer from "../pages/components/Footer";
-import Navbar from "../pages/components/Navbar";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 const Main = () => {
   return (
     <SnackbarProvider>
-      <Navbar />
-      <Outlet />
-      <Footer />
+      <div className="min-h-screen">
+        <Navbar />
+        <Outlet />
+        <Footer />
+      </div>
     </SnackbarProvider>
   );
 };

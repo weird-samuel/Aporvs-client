@@ -19,7 +19,7 @@ html {
 }
 
 .body {
-    background-image: url("https://assets.codepen.io/1538474/star.svg"), linear-gradient(to bottom, #000000, #185465);
+    background-image: url("https://assets.codepen.io/1538474/star.svg"), linear-gradient(to bottom, #000000, #191D31);
     height: 100vh;
     margin: 0;
     background-attachment: fixed;
