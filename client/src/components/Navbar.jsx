@@ -20,7 +20,7 @@ const Navbar = () => {
         <p>Aporvis</p>
       </Link>
 
-      <div className="dropdown dropdown-end mr-5 md:mr-12 flex items-center">
+      <div className="dropdown dropdown-end mr-5 md:mr-12 flex items-center justify-center">
         {user ? <p className="mr-2">Hi, {user.firstName}</p> : ""}
         <SignedOut>
           <SignInButton>
