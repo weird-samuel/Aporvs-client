@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import {
   MdDashboard,
   MdDashboardCustomize,
@@ -7,6 +7,7 @@ import {
 import { FaUsers } from "react-icons/fa6";
 import { FaBriefcase, FaLocationArrow, FaPlus, FaUser } from "react-icons/fa";
 import { IoHome } from "react-icons/io5";
+import { SignOutButton, useUser } from "@clerk/clerk-react";
 // import { useContext } from "react";
 // import { AuthContext } from "../context/AuthProvider";
 
@@ -19,7 +20,7 @@ const sharedLinks = (
       </Link>
     </li>
     <li>
-      <Link to={"/order-tracking  "}>
+      <Link to={"/order-tracking"}>
         <FaLocationArrow />
         Activity Tracking
       </Link>
@@ -32,17 +33,14 @@ const sharedLinks = (
     </li>
   </>
 );
+
 const AdminDashboardLayout = () => {
-  // const { logout } = useContext(AuthContext);
-  // const handleLogout = () => {
-  //   logout()
-  //     .then(() => {
-  //       alert("Logged out successfully");
-  //     })
-  //     .catch((err) => {
-  //       alert("Error" + err.message);
-  //     });
-  // };
+  const navigate = useNavigate();
+  const user = useUser();
+  const handleLogout = () => {
+    alert("You have been logged out");
+    navigate("/");
+  };
   return (
     <div className="bg-[#E8E6EA] text-[#191D31]">
       <div className="drawer sm:drawer-open">
@@ -56,13 +54,17 @@ const AdminDashboardLayout = () => {
             >
               <MdDashboardCustomize className="text-[#E8E6EA]" />
             </label>
-            <button
-              className="btn btn-ghost rounded-full px-6 flex items-center gap-2 bg-base-200 sm:hidden"
-              // onClick={handleLogout}
-            >
-              <FaUser />
-              Logout
-            </button>
+            {user ? (
+              <div
+                className="btn btn-ghost rounded-full px-6 flex items-center gap-2 bg-base-200 sm:hidden"
+                onClick={handleLogout}
+              >
+                <SignOutButton />
+                <FaUser />
+              </div>
+            ) : (
+              (alert("You are not logged in"), navigate("/"))
+            )}
           </div>
           <div className="mt-5 md:mt-2 mx-4">
             <Outlet />

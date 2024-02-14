@@ -4,11 +4,12 @@ import { useUser, SignUpButton } from "@clerk/clerk-react";
 //
 const Hero = () => {
   const user = useUser();
+  // console.log(user.organizationMemberships);
   return (
     <div className="section-container">
-      <div className="flex flex-col md:flex-row-reverse justify-between items-center gap-24 md:gap-8 -mt-14">
+      <div className="flex flex-col md:flex-row-reverse justify-between items-center gap-24 md:gap-0 -mt-16">
         <div className="md:w-1/2">
-          <div className="hidden lg:flex flex-col md:flex-row items-center justify-around gap-4">
+          <div className="hidden lg:flex flex-col md:flex-row items-center justify-around">
             <img src={airplaneSvg} alt="Hero-image" />
           </div>
         </div>
@@ -23,7 +24,7 @@ const Hero = () => {
             </p>
             {user.user ? (
               <button className="hidden md:block btn text-[#E8E6EA] bg-[#1F1F1F] hover:bg-[#1F1F1F] border-none outline-none py-3 font-semibold">
-                Dashboard
+                Go To Dashboard
               </button>
             ) : (
               <SignUpButton>

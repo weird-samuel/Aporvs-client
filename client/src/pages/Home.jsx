@@ -10,7 +10,7 @@ const Home = () => {
         <Hero />
       </section>
       <div className="lg:hidden px-4 xl:px-14 flex items-center justify-center">
-        <div className="mockup-browser border bg-base-300 mt-10">
+        <div className="mockup-browser border bg-base-300 mt-10 -z-0">
           <div className="mockup-browser-toolbar">
             <div className="input">https://aporvis.com</div>
           </div>
