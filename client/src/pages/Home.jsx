@@ -1,9 +1,7 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Hero from "../components/Hero";
-import { SignUpButton, useUser } from "@clerk/clerk-react";
 
 const Home = () => {
-  const user = useUser();
   return (
     <section className="w-[100vw]">
       <section className="px-4 xl:px-14 flex">
@@ -14,7 +12,7 @@ const Home = () => {
           <div className="mockup-browser-toolbar">
             <div className="input">https://aporvis.com</div>
           </div>
-          <div className="px-4 py-12 space-y-4 bg-base-200 text-center">
+          {/* <div className="px-4 py-12 space-y-4 bg-base-200 text-center">
             {user.user ? (
               <p>Click to see Your Dashboard</p>
             ) : (
@@ -33,7 +31,7 @@ const Home = () => {
                 </SignUpButton>
               )}
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

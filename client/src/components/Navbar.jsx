@@ -1,10 +1,8 @@
 import { Link } from "react-router-dom";
-import { FaRegUser } from "react-icons/fa";
+// import { FaRegUser } from "react-icons/fa";
 import logo from "/images/logo-2.png";
-import Profile from "./Profile";
-import { useUser, SignInButton, SignedOut } from "@clerk/clerk-react";
+// import Profile from "./Profile";
 const Navbar = () => {
-  const { user } = useUser();
   return (
     <section className="flex md:px-4 py-4 xl:px-14 max-w-full justify-between items-center">
       <Link
@@ -16,22 +14,18 @@ const Navbar = () => {
       </Link>
 
       <div className="dropdown dropdown-end">
-        {user ? (
+        {/* {user ? (
           <div className="flex items-center justify-center">
             <p>Hi, {user.firstName}</p>
             <Profile user={user} />
           </div>
         ) : (
           <div>
-            <SignedOut>
-              <SignInButton>
-                <button className="btn btn-ghost border-none outline-none rounded-full px-6 flex items-center gap-2">
-                  <FaRegUser /> Sign In
-                </button>
-              </SignInButton>
-            </SignedOut>
+            <button className="btn btn-ghost border-none outline-none rounded-full px-6 flex items-center gap-2">
+              <FaRegUser /> Sign In
+            </button>
           </div>
-        )}
+        )} */}
       </div>
     </section>
   );

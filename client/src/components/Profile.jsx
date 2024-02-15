@@ -1,11 +1,8 @@
 import propTypes from "prop-types";
-import { FaRegUser } from "react-icons/fa";
-import { useUser } from "@clerk/clerk-react";
+// import { FaRegUser } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import { SignOutButton } from "@clerk/clerk-react";
 
 const Profile = () => {
-  const user = useUser();
   const navigate = useNavigate();
   const handleLogout = () => {
     alert("You have been logged out");
@@ -21,7 +18,7 @@ const Profile = () => {
             htmlFor="my-drawer-4"
             className="btn btn-ghost btn-circle avatar"
           >
-            {user.user.imageUrl ? (
+            {/* {user.user.imageUrl ? (
               <div className="w-8 rounded-full">
                 <img
                   alt="Tailwind CSS Navbar component"
@@ -30,7 +27,7 @@ const Profile = () => {
               </div>
             ) : (
               <FaRegUser />
-            )}
+            )} */}
           </label>
         </div>
         <div className="drawer-side">
@@ -51,7 +48,7 @@ const Profile = () => {
               <Link to="/admin/dashboard">Dashboard</Link>
             </li>
             <li onClick={handleLogout}>
-              <SignOutButton />
+              <a>Logout</a>
             </li>
           </ul>
         </div>
