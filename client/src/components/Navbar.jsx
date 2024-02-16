@@ -1,33 +1,38 @@
 import { Link } from "react-router-dom";
-// import { FaRegUser } from "react-icons/fa";
+import { FaRegUser } from "react-icons/fa";
 import logo from "/images/logo-2.png";
-// import Profile from "./Profile";
+import { AuthContext } from "../context/AuthProvider";
+import { useContext } from "react";
+import Profile from "./Profile";
 const Navbar = () => {
+  const { user } = useContext(AuthContext);
   return (
-    <section className="flex md:px-4 py-4 xl:px-14 max-w-full justify-between items-center">
-      <Link
-        to={"/"}
-        className="flex flex-wrap max-w-28 items-center justify-center -space-y-5 -mt-5"
-      >
-        <img src={logo} alt="logo" className="w-20" />
-        <p>Aporvis</p>
-      </Link>
-
-      <div className="dropdown dropdown-end">
-        {/* {user ? (
-          <div className="flex items-center justify-center">
-            <p>Hi, {user.firstName}</p>
+    <header className="container mx-auto p-4 flex items-center justify-between">
+      <div className="navbar">
+        <div className="navbar-start">
+          <Link
+            to={"/"}
+            className="flex flex-wrap max-w-28 items-center justify-center -space-y-5 -mt-5"
+          >
+            <img src={logo} alt="logo" className="w-20" />
+            <p>Aporvis</p>
+          </Link>
+        </div>
+        <div className="navbar-end">
+          {/* Login btn */}
+          {user ? (
             <Profile user={user} />
-          </div>
-        ) : (
-          <div>
-            <button className="btn btn-ghost border-none outline-none rounded-full px-6 flex items-center gap-2">
-              <FaRegUser /> Sign In
-            </button>
-          </div>
-        )} */}
+          ) : (
+            <Link
+              to={"/signup"}
+              className="btn btn-ghost rounded-full px-6 flex items-center gap-2 bg-base-200 transition-all duration-300"
+            >
+              <FaRegUser /> Login
+            </Link>
+          )}
+        </div>
       </div>
-    </section>
+    </header>
   );
 };
 

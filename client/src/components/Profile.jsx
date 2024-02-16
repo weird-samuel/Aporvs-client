@@ -1,16 +1,28 @@
 import propTypes from "prop-types";
-// import { FaRegUser } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { FaRegUser } from "react-icons/fa";
+import { AuthContext } from "../context/AuthProvider";
+import { useContext } from "react";
+import { enqueueSnackbar } from "notistack";
 
-const Profile = () => {
-  const navigate = useNavigate();
+const Profile = ({ user }) => {
+  const { logout } = useContext(AuthContext);
   const handleLogout = () => {
-    alert("You have been logged out");
-    navigate("//");
+    logout()
+      .then(() => {
+        enqueueSnackbar("Logged out successfully", {
+          variant: "success",
+        });
+      })
+      .catch((err) => {
+        enqueueSnackbar("Error" + err.message),
+          {
+            variant: "error",
+          };
+      });
   };
   return (
     <div>
-      <div className="drawer drawer-end z-50 bg-[#E8E6EA]">
+      <div className="drawer drawer-end">
         <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content">
           {/* Page content here */}
@@ -18,16 +30,13 @@ const Profile = () => {
             htmlFor="my-drawer-4"
             className="btn btn-ghost btn-circle avatar"
           >
-            {/* {user.user.imageUrl ? (
+            {user.photoURL ? (
               <div className="w-8 rounded-full">
-                <img
-                  alt="Tailwind CSS Navbar component"
-                  src={user.user.imageUrl}
-                />
+                <img alt="Tailwind CSS Navbar component" src={user.photoURL} />
               </div>
             ) : (
               <FaRegUser />
-            )} */}
+            )}
           </label>
         </div>
         <div className="drawer-side">
@@ -45,10 +54,10 @@ const Profile = () => {
               <a>Order</a>
             </li>
             <li>
-              <Link to="/admin/dashboard">Dashboard</Link>
+              <a>Settings</a>
             </li>
-            <li onClick={handleLogout}>
-              <a>Logout</a>
+            <li>
+              <a onClick={handleLogout}>Logout</a>
             </li>
           </ul>
         </div>
