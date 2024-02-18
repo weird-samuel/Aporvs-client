@@ -6,7 +6,7 @@ import { AuthContext } from "../context/AuthProvider";
 const Hero = () => {
   const { user } = useContext(AuthContext);
   return (
-    <div className="flex flex-col md:flex-row-reverse justify-between items-center gap-24 -mt-16">
+    <div className="flex flex-col md:flex-row-reverse justify-between items-center md:-mt-16">
       <div className="md:w-1/2">
         <div className="hidden lg:flex flex-col md:flex-row items-center justify-around">
           <img src={airplaneSvg} alt="Hero-image" />

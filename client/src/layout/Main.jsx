@@ -1,5 +1,4 @@
 import { Outlet } from "react-router-dom";
-import { SnackbarProvider } from "notistack";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { useContext } from "react";
@@ -10,15 +9,12 @@ const Main = () => {
 
   return (
     <div>
-      <SnackbarProvider />
       {loading ? (
         <Loader />
       ) : (
         <div>
           <Navbar />
-          <div className="">
-            <Outlet />
-          </div>
+          <Outlet />
           <Footer />
         </div>
       )}

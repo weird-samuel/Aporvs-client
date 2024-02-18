@@ -22,7 +22,7 @@ const Profile = ({ user }) => {
   };
   return (
     <div>
-      <div className="drawer drawer-end">
+      <div className="drawer z-10 bg-[#E8E6EA]">
         <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content">
           {/* Page content here */}
@@ -51,7 +51,7 @@ const Profile = ({ user }) => {
               <a href="/update-profile">Profile</a>
             </li>
             <li>
-              <a>Order</a>
+              <a>Dashboard</a>
             </li>
             <li>
               <a>Settings</a>

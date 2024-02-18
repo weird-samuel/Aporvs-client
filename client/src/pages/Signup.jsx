@@ -1,8 +1,9 @@
 import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
 import { useForm } from "react-hook-form";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthProvider";
 import { useContext } from "react";
+import { enqueueSnackbar } from "notistack";
 
 const Signup = () => {
   const {
@@ -15,9 +16,7 @@ const Signup = () => {
   const { signupWithGoogle } = useContext(AuthContext);
 
   // redirect users
-  const location = useLocation();
   const navigate = useNavigate();
-  const from = location.state?.from?.pathname || "/";
 
   const onSubmit = (data) => {
     const email = data.email;
@@ -25,13 +24,14 @@ const Signup = () => {
     createUser(email, password)
       .then((res) => {
         const user = res.user;
-        alert(
+        enqueueSnackbar(
           "Account for user with email " + user.email + " created successfully"
-        );
-        navigate(from, { replace: true });
+        ),
+          { variant: "success" };
+        navigate("/");
       })
       .catch((err) => {
-        alert("Error" + err.message);
+        enqueueSnackbar("Error" + err.message), { variant: "error" };
       });
   };
   // google auth
@@ -39,11 +39,11 @@ const Signup = () => {
     signupWithGoogle()
       .then((res) => {
         const user = res.user;
-        alert("Welcome " + user.displayName);
-        navigate(from, { replace: true });
+        enqueueSnackbar("Welcome " + user.displayName, { variant: "success" });
+        navigate("/");
       })
       .catch((err) => {
-        alert("Error" + err.message);
+        enqueueSnackbar("Error: " + err.message, { variant: "error" });
       });
   };
 
@@ -92,7 +92,9 @@ const Signup = () => {
           </div>
           <p className="text-center my-2">
             Have an account?
-            <a className="underline hover:text-gray-500 ml-1">Log in!</a>
+            <Link to={"/login"} className="underline hover:text-gray-500 ml-1">
+              Log in!
+            </Link>
           </p>
           <Link
             to={"/"}

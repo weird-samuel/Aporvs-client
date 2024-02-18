@@ -7,7 +7,7 @@ import Profile from "./Profile";
 const Navbar = () => {
   const { user } = useContext(AuthContext);
   return (
-    <header className="container mx-auto p-4 flex items-center justify-between">
+    <header className="container mx-auto p-4 flex items-center justify-between z-10">
       <div className="navbar">
         <div className="navbar-start">
           <Link
@@ -24,7 +24,7 @@ const Navbar = () => {
             <Profile user={user} />
           ) : (
             <Link
-              to={"/signup"}
+              to={"/login"}
               className="btn btn-ghost rounded-full px-6 flex items-center gap-2 bg-base-200 transition-all duration-300"
             >
               <FaRegUser /> Login
