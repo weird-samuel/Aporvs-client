@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import airplaneSvg from "/images/airplane.png";
 import { AuthContext } from "../context/AuthProvider";
 //
@@ -26,9 +27,12 @@ const Hero = () => {
               Go To Dashboard
             </button>
           ) : (
-            <button className="hidden md:flex btn text-[#E8E6EA] bg-[#1F1F1F] hover:bg-[#1F1F1F] border-none outline-none px-10 py-3 font-semibold">
+            <Link
+              to="/signup"
+              className="hidden md:flex btn text-[#E8E6EA] bg-[#1F1F1F] hover:bg-[#1F1F1F] border-none outline-none w-36 font-semibold"
+            >
               Get Started!
-            </button>
+            </Link>
           )}
         </div>
       </div>
