@@ -28,7 +28,7 @@ const Signup = () => {
           "Account for user with email " + user.email + " created successfully"
         ),
           { variant: "success" };
-        navigate("/");
+        navigate("/dashboard");
       })
       .catch((err) => {
         enqueueSnackbar("Error" + err.message), { variant: "error" };
@@ -40,7 +40,7 @@ const Signup = () => {
       .then((res) => {
         const user = res.user;
         enqueueSnackbar("Welcome " + user.displayName, { variant: "success" });
-        navigate("/");
+        navigate("/dashboard");
       })
       .catch((err) => {
         enqueueSnackbar("Error: " + err.message, { variant: "error" });

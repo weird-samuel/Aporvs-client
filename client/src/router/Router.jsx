@@ -4,8 +4,13 @@ import Home from "../pages/Home";
 import Error from "../pages/Error";
 import Signup from "../pages/Signup";
 import Login from "../pages/Login";
-// import AdminDashboardLayout from "../layout/AdminDashboardLayout";
-// import AdminDashboard from "../pages/Dashboard/AdminDashboard";
+import UserDashboard from "../pages/Dashboard/UserDashboard";
+import PrivateRouter from "../protectedRoutes/PrivateRouter";
+import UpdateProfile from "../pages/Dashboard/UpdateProfile";
+import ResetPassword from "../pages/ResetPassword";
+import AdminDashboardLayout from "../layout/AdminDashboardLayout";
+import AdminDashboard from "../pages/Dashboard/AdminDashboard";
+import Users from "../pages/Users";
 
 const Router = createBrowserRouter([
   {
@@ -17,6 +22,18 @@ const Router = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
+      {
+        path: "/dashboard",
+        element: (
+          <PrivateRouter>
+            <UserDashboard />
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "/update-profile",
+        element: <UpdateProfile />,
+      },
     ],
   },
   {
@@ -27,17 +44,25 @@ const Router = createBrowserRouter([
     path: "/login",
     element: <Login />,
   },
-  // {
-  //   path: "/",
-  //   element: <AdminDashboardLayout />,
-  //   errorElement: <Error />,
-  //   children: [
-  //     {
-  //       path: "/admin/dashboard",
-  //       element: <AdminDashboard />,
-  //     },
-  //   ],
-  // },
+  {
+    path: "/reset-password",
+    element: <ResetPassword />,
+  },
+  {
+    path: "/admin",
+    element: <AdminDashboardLayout />,
+    errorElement: <Error />,
+    children: [
+      {
+        path: "/admin/dashboard",
+        element: <AdminDashboard />,
+      },
+      {
+        path: "/admin/dashboard/users",
+        element: <Users />,
+      },
+    ],
+  },
 ]);
 
 export default Router;

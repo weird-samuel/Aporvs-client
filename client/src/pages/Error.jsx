@@ -18,9 +18,9 @@ const Error = () => {
       <div className="flex items-center justify-center">
         <a
           className="text-white cursor-pointer border p-3 font-normal hover:bg-slate-900 transition-all duration-300 ease-in-out"
-          onClick={() => navigate("/")}
+          onClick={() => navigate(-1)}
         >
-          Back to home page
+          Back to Previous Page
         </a>
       </div>
       <img

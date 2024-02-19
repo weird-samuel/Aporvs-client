@@ -3,8 +3,10 @@ import { FaRegUser } from "react-icons/fa";
 import { AuthContext } from "../context/AuthProvider";
 import { useContext } from "react";
 import { enqueueSnackbar } from "notistack";
+import { Link, useNavigate } from "react-router-dom";
 
 const Profile = ({ user }) => {
+  const navigate = useNavigate();
   const { logout } = useContext(AuthContext);
   const handleLogout = () => {
     logout()
@@ -12,6 +14,7 @@ const Profile = ({ user }) => {
         enqueueSnackbar("Logged out successfully", {
           variant: "success",
         });
+        navigate("/");
       })
       .catch((err) => {
         enqueueSnackbar("Error" + err.message),
@@ -32,10 +35,10 @@ const Profile = ({ user }) => {
           >
             {user.photoURL ? (
               <div className="w-8 rounded-full">
-                <img alt="Tailwind CSS Navbar component" src={user.photoURL} />
+                <img alt="img-here" src={user.photoURL} />
               </div>
             ) : (
-              <FaRegUser />
+              <FaRegUser className="text-2xl rounded-full overflow-hidden" />
             )}
           </label>
         </div>
@@ -51,7 +54,7 @@ const Profile = ({ user }) => {
               <a href="/update-profile">Profile</a>
             </li>
             <li>
-              <a>Dashboard</a>
+              <Link to={"/dashboard"}>Dashboard</Link>
             </li>
             <li>
               <a>Settings</a>

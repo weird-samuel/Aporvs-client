@@ -19,11 +19,11 @@ html::-webkit-scrollbar {
 }
 
 html::-webkit-scrollbar-track {
-    background-color: #ffffff;
+    background-color: #E8E6EA;
 }
 
 html::-webkit-scrollbar-thumb {
-    background-color: #000000;
+    background-color: #191D31;
 }
 
 .roboto {
@@ -32,4 +32,9 @@ html::-webkit-scrollbar-thumb {
 
 .play {
     font-family: 'Play', sans-serif;
+}
+
+th,
+td {
+    border: 1px solid #191D31;
 }

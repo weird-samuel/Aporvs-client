@@ -21,7 +21,7 @@ const Login = () => {
         enqueueSnackbar("Welcome user with email " + user.email, {
           variant: "success",
         });
-        navigate("/");
+        navigate("/dashboard");
       })
       .catch((err) => {
         enqueueSnackbar("Error: " + err.message, { variant: "error" });
@@ -34,7 +34,7 @@ const Login = () => {
       .then((res) => {
         const user = res.user;
         enqueueSnackbar("Welcome " + user.displayName, { variant: "success" });
-        navigate("/");
+        navigate("/dashboard");
       })
       .catch((err) => {
         enqueueSnackbar("Error" + err.message, { variant: "error" });
@@ -79,9 +79,12 @@ const Login = () => {
                 {...register("password")}
               />
               <label className="label mt-1">
-                <a href="#" className="label-text-alt link link-hover">
+                <Link
+                  to={"/reset-password"}
+                  className="label-text-alt link link-hover"
+                >
                   Forgot password?
-                </a>
+                </Link>
               </label>
             </div>
 
