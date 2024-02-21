@@ -6,6 +6,7 @@ import { useContext } from "react";
 import Profile from "./Profile";
 const Navbar = () => {
   const { user } = useContext(AuthContext);
+  // console.log(user);
   const location = useLocation();
   return (
     <header className="container mx-auto p-4 flex items-center justify-between z-10">

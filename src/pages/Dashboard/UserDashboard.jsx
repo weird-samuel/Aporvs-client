@@ -4,8 +4,10 @@ import UserGreeting from "../../components/UserGreeting";
 import { IoEyeOutline, IoTrash } from "react-icons/io5";
 import { FaRegEdit } from "react-icons/fa";
 import { FiRefreshCw } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
 const UserDashboard = () => {
+  const navigate = useNavigate();
   const [status, setStatus] = useState("incomplete"); // State to track active status
 
   const handleStatusChange = (newStatus) => {
@@ -50,7 +52,10 @@ const UserDashboard = () => {
             </button>
           </div>
           <div className="flex flex-wrap md:flex-nowrap space-x-1">
-            <button className="btn hover:text-[#E8E6EA] hover:bg-[#191D31] transition-all duration-300 ease-in-out">
+            <button
+              className="btn hover:text-[#E8E6EA] hover:bg-[#191D31] transition-all duration-300 ease-in-out"
+              onClick={() => navigate("/new-application")}
+            >
               New Application
             </button>
             <button className="btn hover:text-[#E8E6EA] hover:bg-[#191D31] transition-all duration-300 ease-in-out">

@@ -11,6 +11,7 @@ import ResetPassword from "../pages/ResetPassword";
 import AdminDashboardLayout from "../layout/AdminDashboardLayout";
 import AdminDashboard from "../pages/Dashboard/AdminDashboard";
 import Users from "../pages/Users";
+import ApplicationForm from "../pages/ApplicationForm";
 
 const Router = createBrowserRouter([
   {
@@ -32,7 +33,19 @@ const Router = createBrowserRouter([
       },
       {
         path: "/update-profile",
-        element: <UpdateProfile />,
+        element: (
+          <PrivateRouter>
+            <UpdateProfile />
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "/new-application",
+        element: (
+          <PrivateRouter>
+            <ApplicationForm />
+          </PrivateRouter>
+        ),
       },
     ],
   },
