@@ -1,11 +1,11 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import {
   MdDashboard,
   MdDashboardCustomize,
   MdOutlineSupportAgent,
 } from "react-icons/md";
 import { FaUsers } from "react-icons/fa6";
-import { FaEdit, FaLocationArrow, FaPlus, FaUser } from "react-icons/fa";
+import { FaEdit, FaLocationArrow, FaUser } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthProvider";
 import { enqueueSnackbar } from "notistack";
@@ -27,11 +27,13 @@ const sharedLinks = (
   </>
 );
 const AdminDashboardLayout = () => {
+  const navigate = useNavigate();
   const { logout } = useContext(AuthContext);
   const handleLogout = () => {
     logout()
       .then(() => {
         enqueueSnackbar("Logged out successfully", { variant: "success" });
+        navigate("/");
       })
       .catch((err) => {
         enqueueSnackbar("Error" + err.message, { variant: "error" });
@@ -85,23 +87,22 @@ const AdminDashboardLayout = () => {
                 Dashboard
               </Link>
             </li>
-
             <li>
-              <Link to={"/admin/manage-admins"}>
-                <FaPlus />
-                Manage Admins
-              </Link>
-            </li>
-            <li>
-              <Link to={"/admin/add-admin"}>
+              <Link to={"/admin/manage-admin"}>
                 <FaEdit />
-                Add Admin
+                manage Admins
               </Link>
             </li>
-            <li className="mb-3">
+            <li>
               <Link to={"/admin/dashboard/users"}>
                 <FaUsers />
                 All Users
+              </Link>
+            </li>
+            <li>
+              <Link className="md:flex mb-3 hidden" onClick={handleLogout}>
+                <FaUser />
+                Logout
               </Link>
             </li>
             <hr />

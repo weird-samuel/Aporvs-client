@@ -1,8 +1,7 @@
-// import { useLocation } from "react-router-dom";
 import UserGreeting from "../components/UserGreeting";
+import UserDetailsForm from "../components/UserDetailsForm";
 
 const ApplicationForm = () => {
-  //   const location = useLocation();
   return (
     <div>
       <UserGreeting />
@@ -21,6 +20,9 @@ const ApplicationForm = () => {
             Step 3
           </li>
         </ul>
+        <div className="w-full max-w-[700px] mx-auto py-4 text-[#191D31]">
+          <UserDetailsForm />
+        </div>
       </section>
     </div>
   );

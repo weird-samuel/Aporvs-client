@@ -22,16 +22,6 @@ const UserDashboard = () => {
           <div className="flex flex-wrap md:flex-nowrap space-x-1">
             <button
               className={`btn ${
-                status === "incomplete"
-                  ? "bg-[#191D31] text-[#E8E6EA] hover:bg-[#191D31]"
-                  : ""
-              }`}
-              onClick={() => handleStatusChange("incomplete")}
-            >
-              Incomplete (1)
-            </button>
-            <button
-              className={`btn ${
                 status === "complete"
                   ? "bg-[#191D31] text-[#E8E6EA] hover:bg-[#191D31]"
                   : ""
@@ -77,25 +67,12 @@ const UserDashboard = () => {
               </tr>
             </thead>
             <tbody className="text-[#191D31]">
-              <tr className={status === "incomplete" ? "" : "hidden"}>
+              <tr className={status === "complete" ? "" : "hidden"}>
                 <td>Mr. Samuel Adekunle</td>
                 <td>Nigerian</td>
                 <td>100001</td>
                 <td>001</td>
                 <td>Ref11</td>
-                <td>
-                  <div className="flex space-x-1">
-                    <FaRegEdit />
-                    <IoTrash className="text-red-600" />
-                  </div>
-                </td>
-              </tr>
-              <tr className={status === "complete" ? "" : "hidden"}>
-                <td>Mrs. Hart Hagerty</td>
-                <td>Nigerian</td>
-                <td>100002</td>
-                <td>002</td>
-                <td>Ref12</td>
                 <td>
                   <div className="flex space-x-1">
                     <IoEyeOutline />
@@ -111,7 +88,20 @@ const UserDashboard = () => {
                 <td>Ref13</td>
                 <td>
                   <div className="flex space-x-1">
+                    <FaRegEdit />
                     <FiRefreshCw />
+                    <IoTrash className="text-red-600" />
+                  </div>
+                </td>
+              </tr>
+              <tr className={status === "complete" ? "" : "hidden"}>
+                <td>Miss Gobaye Chinyere</td>
+                <td>Nigerian</td>
+                <td>100003</td>
+                <td>003</td>
+                <td>Ref13</td>
+                <td>
+                  <div className="flex space-x-1">
                     <IoEyeOutline />
                     <IoTrash className="text-red-600" />
                   </div>
