@@ -9,17 +9,7 @@ const ApplicationForm = () => {
         <div className="text-[#191D31] mt-3 mb-5">
           <h2>Please Fill the form to get your application started</h2>
         </div>
-        <ul className="steps">
-          <li data-content="" className="step step-neutral">
-            Step 1
-          </li>
-          <li data-content="!" className="step step-neutral">
-            Step 2
-          </li>
-          <li data-content="✓" className="step step-neutral">
-            Step 3
-          </li>
-        </ul>
+
         <div className="w-full max-w-[700px] mx-auto py-4 text-[#191D31]">
           <UserDetailsForm />
         </div>

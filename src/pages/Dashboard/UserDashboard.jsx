@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const UserDashboard = () => {
   const navigate = useNavigate();
-  const [status, setStatus] = useState("incomplete"); // State to track active status
+  const [status, setStatus] = useState("complete"); // State to track active status
 
   const handleStatusChange = (newStatus) => {
     setStatus(newStatus);
@@ -90,19 +90,6 @@ const UserDashboard = () => {
                   <div className="flex space-x-1">
                     <FaRegEdit />
                     <FiRefreshCw />
-                    <IoTrash className="text-red-600" />
-                  </div>
-                </td>
-              </tr>
-              <tr className={status === "complete" ? "" : "hidden"}>
-                <td>Miss Gobaye Chinyere</td>
-                <td>Nigerian</td>
-                <td>100003</td>
-                <td>003</td>
-                <td>Ref13</td>
-                <td>
-                  <div className="flex space-x-1">
-                    <IoEyeOutline />
                     <IoTrash className="text-red-600" />
                   </div>
                 </td>

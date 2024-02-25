@@ -2,6 +2,12 @@
 import { useState } from "react";
 
 const UserDetailsForm = () => {
+  const [currentStep, setCurrentStep] = useState(1);
+
+  const handleStepChange = (step) => {
+    setCurrentStep(step);
+  };
+
   const [formData, setFormData] = useState({
     nationality: "",
     passportType: "",
@@ -15,13 +21,43 @@ const UserDetailsForm = () => {
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
+  console.log(formData);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(formData);
+    handleStepChange(1);
+    setTimeout(() => {
+      handleStepChange(2);
+    }, 3000);
   };
   return (
     <section>
+      <div>
+        <ul className="steps steps-vertical lg:steps-horizontal">
+          <li className={`step ${currentStep >= 1 ? "step-primary" : ""}`}>
+            Register
+          </li>
+          <li
+            className={`step ${currentStep >= 2 ? "step-primary" : ""}`}
+            onClick={() => handleStepChange(2)}
+          >
+            Choose plan
+          </li>
+          <li
+            className={`step ${currentStep >= 3 ? "step-primary" : ""}`}
+            onClick={() => handleStepChange(3)}
+          >
+            Purchase
+          </li>
+          <li
+            className={`step ${currentStep >= 4 ? "step-primary" : ""}`}
+            onClick={() => handleStepChange(4)}
+          >
+            Receive Product
+          </li>
+        </ul>
+      </div>
       <form method="post" onSubmit={handleSubmit}>
         <div className="mb-4">
           <label
@@ -280,8 +316,8 @@ const UserDetailsForm = () => {
           </label>
           <select
             className="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
-            name="passportType"
-            id="passportType"
+            name="visaType"
+            id="visaType"
             value={formData.visaType}
             onChange={handleChange}
             required
@@ -321,8 +357,8 @@ const UserDetailsForm = () => {
             </label>
             <select
               className="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
-              name="passportType"
-              id="passportType"
+              name="visaClass"
+              id="visaClass"
               value={formData.visaClass}
               onChange={handleChange}
               required
