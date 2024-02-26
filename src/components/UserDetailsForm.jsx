@@ -34,27 +34,15 @@ const UserDetailsForm = () => {
   return (
     <section>
       <div>
-        <ul className="steps steps-vertical lg:steps-horizontal">
+        <ul className="steps steps-horizontal w-full">
           <li className={`step ${currentStep >= 1 ? "step-primary" : ""}`}>
-            Register
+            Nationality & Visa Details
           </li>
           <li
             className={`step ${currentStep >= 2 ? "step-primary" : ""}`}
             onClick={() => handleStepChange(2)}
           >
-            Choose plan
-          </li>
-          <li
-            className={`step ${currentStep >= 3 ? "step-primary" : ""}`}
-            onClick={() => handleStepChange(3)}
-          >
-            Purchase
-          </li>
-          <li
-            className={`step ${currentStep >= 4 ? "step-primary" : ""}`}
-            onClick={() => handleStepChange(4)}
-          >
-            Receive Product
+            Applicant's Details
           </li>
         </ul>
       </div>

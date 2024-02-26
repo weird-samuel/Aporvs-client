@@ -38,3 +38,11 @@ th,
 td {
     border: 1px solid #191D31;
 }
+
+li.step.step-primary::after {
+    background: #191D31 !important;
+}
+
+li.step.step-primary::before {
+    background: #191D31 !important;
+}

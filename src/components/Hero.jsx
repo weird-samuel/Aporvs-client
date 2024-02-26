@@ -7,9 +7,9 @@ import { AuthContext } from "../context/AuthProvider";
 const Hero = () => {
   const { user } = useContext(AuthContext);
   return (
-    <div className="flex flex-col md:flex-row-reverse justify-between items-center md:-mt-16">
+    <div className="flex flex-col md:flex-row-reverse justify-between items-center md:-mt-20">
       <div className="md:w-1/2">
-        <div className="hidden lg:flex flex-col md:flex-row items-center justify-around">
+        <div className="hidden lg:flex flex-col md:flex-row items-center">
           <img src={airplaneSvg} alt="Hero-image" />
         </div>
       </div>
@@ -23,9 +23,12 @@ const Hero = () => {
             you!
           </p>
           {user ? (
-            <button className="hidden md:block btn text-[#E8E6EA] bg-[#1F1F1F] hover:bg-[#1F1F1F] border-none outline-none py-3 font-semibold">
+            <Link
+              className="hidden md:flex w-48 btn text-[#E8E6EA] bg-[#1F1F1F] hover:bg-[#1F1F1F] border-none outline-none font-semibold"
+              to={"/dashboard"}
+            >
               Go To Dashboard
-            </button>
+            </Link>
           ) : (
             <Link
               to="/signup"

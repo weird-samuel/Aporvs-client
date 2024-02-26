@@ -12,7 +12,7 @@ const Main = () => {
       {loading ? (
         <Loader />
       ) : (
-        <div>
+        <div className="h-screen">
           <Navbar />
           <Outlet />
           <Footer />

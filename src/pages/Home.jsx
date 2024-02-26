@@ -24,7 +24,10 @@ const Home = () => {
             )}
             <div className="w-full flex justify-center items-center">
               {user ? (
-                <Link className="md:hidden flex btn text-[#E8E6EA] bg-[#1F1F1F] hover:bg-[#1F1F1F] border-none outline-none px-10 py-3 font-semibold">
+                <Link
+                  className="md:hidden flex btn text-[#E8E6EA] bg-[#1F1F1F] hover:bg-[#1F1F1F] border-none outline-none px-10 py-3 font-semibold"
+                  to={"/dashboard"}
+                >
                   Dashboard
                 </Link>
               ) : (
