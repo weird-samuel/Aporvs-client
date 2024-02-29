@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const UserDashboard = () => {
   const navigate = useNavigate();
-  const [status, setStatus] = useState("complete"); // State to track active status
+  const [status, setStatus] = useState("approved"); // State to track active status
 
   const handleStatusChange = (newStatus) => {
     setStatus(newStatus);
@@ -22,13 +22,23 @@ const UserDashboard = () => {
           <div className="flex flex-wrap md:flex-nowrap space-x-1">
             <button
               className={`btn ${
-                status === "complete"
+                status === "approved"
                   ? "bg-[#191D31] text-[#E8E6EA] hover:bg-[#191D31]"
                   : ""
               }`}
-              onClick={() => handleStatusChange("complete")}
+              onClick={() => handleStatusChange("approved")}
             >
-              Complete (1)
+              Approved (1)
+            </button>
+            <button
+              className={`btn ${
+                status === "rejected"
+                  ? "bg-[#191D31] text-[#E8E6EA] hover:bg-[#191D31]"
+                  : ""
+              }`}
+              onClick={() => handleStatusChange("rejected")}
+            >
+              Rejected (0)
             </button>
             <button
               className={`btn ${
@@ -58,19 +68,13 @@ const UserDashboard = () => {
           <table className="table table-xs">
             <thead>
               <tr className="text-[#191D31] font-bold">
-                <th>Applicant's name</th>
-                <th>Nationality</th>
-                <th>Passport No.</th>
                 <th>Application ID</th>
                 <th>Reference ID</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody className="text-[#191D31]">
-              <tr className={status === "complete" ? "" : "hidden"}>
-                <td>Mr. Samuel Adekunle</td>
-                <td>Nigerian</td>
-                <td>100001</td>
+              <tr className={status === "approved" ? "" : "hidden"}>
                 <td>001</td>
                 <td>Ref11</td>
                 <td>
@@ -81,9 +85,6 @@ const UserDashboard = () => {
                 </td>
               </tr>
               <tr className={status === "pending" ? "" : "hidden"}>
-                <td>Miss Uba Chinyere</td>
-                <td>Nigerian</td>
-                <td>100003</td>
                 <td>003</td>
                 <td>Ref13</td>
                 <td>

@@ -48,7 +48,7 @@ const AdminDashboardLayout = () => {
           <div className="flex items-center justify-between mx-4">
             <label
               htmlFor="my-drawer-2"
-              className="btn drawer-button lg:hidden"
+              className="btn drawer-button md:hidden"
             >
               <MdDashboardCustomize />
             </label>
@@ -74,7 +74,7 @@ const AdminDashboardLayout = () => {
             {/* Sidebar content here */}
             <li>
               <Link to={"/admin/dashboard"} className="flex justify-start mb-3">
-                <div className="font-semibold text-3xl">LAPPI</div>
+                <div className="font-semibold text-3xl">APORVIS</div>
                 <span>
                   <div className="badge badge-primary badge-outline">Admin</div>
                 </span>

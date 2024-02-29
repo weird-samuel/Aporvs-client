@@ -50,3 +50,4 @@ export default Home;
 // #B5EF65 Green
 // #E8E6EA White
 // #191D31 Darker Green
+// #DCDCDD Grey

@@ -24,11 +24,6 @@ const Navbar = () => {
           {/* Login btn */}
           {user ? (
             <div className="flex items-center">
-              {location.pathname === "/dashboard" && (
-                <Link to={"/find-application"} className="text-[#191D31] mr-2">
-                  Find Application
-                </Link>
-              )}
               <Profile user={user} />
             </div>
           ) : (
