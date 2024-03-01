@@ -64,9 +64,9 @@ const Router = createBrowserRouter([
   {
     path: "/admin",
     element: (
-      // <PrivateRouter>
-      <AdminDashboardLayout />
-      // {/* </PrivateRouter> */}
+      <PrivateRouter>
+        <AdminDashboardLayout />
+      </PrivateRouter>
     ),
     errorElement: <Error />,
     children: [

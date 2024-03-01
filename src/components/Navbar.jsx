@@ -1,9 +1,11 @@
 import { Link, useLocation } from "react-router-dom";
 import { FaRegUser } from "react-icons/fa";
 import logo from "/images/logo-2.png";
-import { checkAuth } from "../context/AuthProvider";
+import { AuthContext } from "../context/AuthProvider";
+import { useContext } from "react";
 import Profile from "./Profile";
 const Navbar = () => {
+  const { user } = useContext(AuthContext);
   // console.log(user);
   const location = useLocation();
   return (

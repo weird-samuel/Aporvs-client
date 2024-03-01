@@ -25,7 +25,10 @@ const Login = () => {
       if (res.data.error) {
         enqueueSnackbar(res.data.error, { variant: "error" });
       } else {
+        // Store the token in localStorage
+        localStorage.setItem("accessToken", res.data.accessToken);
         enqueueSnackbar("Login successful", { variant: "success" });
+        console.log(res.data.accessToken);
         navigate("/dashboard");
       }
     } catch (error) {
