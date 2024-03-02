@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthProvider";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { enqueueSnackbar } from "notistack";
 
 const UpdateProfile = () => {
@@ -53,14 +53,11 @@ const UpdateProfile = () => {
   };
 
   return (
-    <div className="flex items-center justify-center">
-      <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+    <div className="flex items-center justify-center w-full p-4">
+      <div className="card shrink-0 w-full shadow-2xl bg-base-100">
         <form className="card-body" onSubmit={onSubmit}>
           <div className="flex w-full justify-between items-center my-5">
             <h2 className="card-title">Update Your Profile</h2>
-            <Link to={"/dashboard"} className="btn btn-sm btn-circle btn-ghost">
-              ✕
-            </Link>
           </div>
           <div className="form-control">
             <label className="label">

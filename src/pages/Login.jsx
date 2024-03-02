@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthProvider";
-import { enqueueSnackbar } from "notistack";
+// import { enqueueSnackbar } from "notistack";
 
 const Login = () => {
   const { login, user } = useContext(AuthContext);
@@ -18,14 +18,11 @@ const Login = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    login(formData, navigate);
+    login(formData);
   };
 
   return user ? (
-    (enqueueSnackbar("You are already logged in", {
-      variant: "info",
-    }),
-    navigate("/dashboard"))
+    navigate("/dashboard")
   ) : (
     <section className="max-h-screen">
       <div className="my-20">

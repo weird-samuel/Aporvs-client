@@ -1,25 +1,46 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+import axios from "axios";
 
 const UserDetailsForm = () => {
   const [formData, setFormData] = useState({
     // nationality: "",
     // passportType: "",
     visaType: "",
-    numberOfEntries: "",
     visaClass: "",
     processingCountry: "",
+    numberOfEntries: "",
     mission: "",
+    referenceNumber: `Ref${uuidv4().slice(0, 5)}`,
   });
 
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
-  // console.log(formData);
+  console.log(formData);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(formData);
+    try {
+      const response = await axios.post(
+        `https://aporvis-server.vercel.app/api/user/application?id=${localStorage.getItem(
+          "userId"
+        )}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (response.data.success) {
+        console.log("Application submitted successfully");
+      }
+    } catch (error) {
+      console.error("Failed to submit form:", error.message);
+    }
   };
   return (
     <section className="border border-[#191D31] rounded-lg p-4 flex justify-between">

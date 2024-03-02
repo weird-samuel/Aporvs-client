@@ -93,7 +93,7 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  const login = async (formData, navigate) => {
+  const login = async (formData) => {
     try {
       const res = await axios.post(
         "https://aporvis-server.vercel.app/api/user/login",
@@ -109,7 +109,6 @@ const AuthProvider = ({ children }) => {
           loading: false,
           user: res.data.user, // Assuming you're returning user data after login
         });
-        navigate("/update-profile");
       }
     } catch (error) {
       if (
