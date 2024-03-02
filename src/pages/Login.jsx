@@ -1,10 +1,10 @@
-import { useState } from "react";
-// import { FcGoogle } from "react-icons/fc";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthProvider";
 import { enqueueSnackbar } from "notistack";
-import axios from "axios";
 
 const Login = () => {
+  const { login, user } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -16,44 +16,23 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const handleSubmit = async () => {
-    try {
-      const res = await axios.post(
-        "https://aporvis-server.vercel.app/api/user/login",
-        formData
-      );
-      if (res.data.error) {
-        enqueueSnackbar(res.data.error, { variant: "error" });
-      } else {
-        // Store the token in localStorage
-        localStorage.setItem("accessToken", res.data.accessToken);
-        enqueueSnackbar("Login successful", { variant: "success" });
-        // console.log(res.data.accessToken);
-        navigate("/update-profile");
-      }
-    } catch (error) {
-      if (
-        error.response &&
-        error.response.data &&
-        error.response.data.message
-      ) {
-        enqueueSnackbar(error.response.data.message, { variant: "error" });
-      } else {
-        enqueueSnackbar("An error occurred while logging in.", {
-          variant: "error",
-        });
-      }
-    }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    login(formData, navigate);
   };
 
-  return (
+  return user ? (
+    (enqueueSnackbar("You are already logged in", {
+      variant: "info",
+    }),
+    navigate("/dashboard"))
+  ) : (
     <section className="max-h-screen">
       <div className="my-20">
         <div className="w-[350px] h-[500px] bg-white p-5 m-auto rounded-lg shadow-2xl">
           <form onSubmit={handleSubmit} className="w-full" method="dialog">
             <div className="flex w-full justify-between items-center my-5">
               <h3 className="font-bold text-2xl">Login</h3>
-
               <Link to={"/"} className="btn btn-sm btn-circle btn-ghost">
                 ✕
               </Link>

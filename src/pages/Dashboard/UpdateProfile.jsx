@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { enqueueSnackbar } from "notistack";
 
 const UpdateProfile = () => {
@@ -27,6 +27,8 @@ const UpdateProfile = () => {
     zipCode: "",
   });
 
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -37,12 +39,11 @@ const UpdateProfile = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     updateUserProfile(formData)
-      .then((response) => {
-        enqueueSnackbar("Update profile successfully", {
+      .then(() => {
+        enqueueSnackbar("Updated profile successfully", {
           variant: "success",
         });
-        console.log(response);
-        // navigate(from, { replace: true });
+        navigate("/dashboard");
       })
       .catch((err) => {
         enqueueSnackbar("Error: " + err.message, {
@@ -72,7 +73,6 @@ const UpdateProfile = () => {
               className="input input-bordered"
               value={formData.image}
               onChange={handleChange}
-              required
             />
           </div>
           <div className="form-control">
@@ -85,7 +85,6 @@ const UpdateProfile = () => {
               id="nationality"
               value={formData.nationality}
               onChange={handleChange}
-              required
             >
               <option value="">Select Country</option>
               <option value="Afghanistan">Afghanistan</option>
@@ -315,7 +314,6 @@ const UpdateProfile = () => {
               id="passportType"
               value={formData.passportType}
               onChange={handleChange}
-              required
             >
               <option value="">Select Passport Type</option>
               <option value="standard">Standard Passport</option>
@@ -334,7 +332,6 @@ const UpdateProfile = () => {
               id="title"
               value={formData.title}
               onChange={handleChange}
-              required
             >
               <option value="">Select Title</option>
               <option value="mr.">Mr.</option>
@@ -352,7 +349,6 @@ const UpdateProfile = () => {
               className="input input-bordered"
               value={formData.lastName}
               onChange={handleChange}
-              required
             />
           </div>
           <div className="form-control">
@@ -365,7 +361,6 @@ const UpdateProfile = () => {
               className="input input-bordered"
               value={formData.firstName}
               onChange={handleChange}
-              required
             />
           </div>
           <div className="form-control">
@@ -390,7 +385,6 @@ const UpdateProfile = () => {
               className="input input-bordered"
               value={formData.dateOfBirth}
               onChange={handleChange}
-              required
             />
           </div>
           <div className="form-control">
@@ -403,7 +397,6 @@ const UpdateProfile = () => {
               className="input input-bordered"
               value={formData.placeOfBirth}
               onChange={handleChange}
-              required
             />
           </div>
           <div className="form-control">
@@ -416,7 +409,6 @@ const UpdateProfile = () => {
               id="maritalStatus"
               value={formData.maritalStatus}
               onChange={handleChange}
-              required
             >
               <option value="">Select Marital Status</option>
               <option value="single">Single</option>
@@ -435,7 +427,6 @@ const UpdateProfile = () => {
               className="input input-bordered"
               value={formData.phoneNumber}
               onChange={handleChange}
-              required
             />
           </div>
           <div className="form-control">
@@ -448,7 +439,6 @@ const UpdateProfile = () => {
               className="input input-bordered"
               value={formData.passportNumber}
               onChange={handleChange}
-              required
             />
           </div>
           <div className="form-control">
@@ -461,7 +451,6 @@ const UpdateProfile = () => {
               className="input input-bordered"
               value={formData.passportExpiryDate}
               onChange={handleChange}
-              required
             />
           </div>
           <div className="form-control">
@@ -474,7 +463,6 @@ const UpdateProfile = () => {
               className="input input-bordered"
               value={formData.occupation}
               onChange={handleChange}
-              required
             />
           </div>
           <div className="form-control">
@@ -487,7 +475,6 @@ const UpdateProfile = () => {
               className="input input-bordered"
               value={formData.address}
               onChange={handleChange}
-              required
             />
           </div>
           <div className="form-control">
@@ -500,7 +487,6 @@ const UpdateProfile = () => {
               className="input input-bordered"
               value={formData.state}
               onChange={handleChange}
-              required
             />
           </div>
           <div className="form-control">
@@ -513,7 +499,6 @@ const UpdateProfile = () => {
               className="input input-bordered"
               value={formData.postalCode}
               onChange={handleChange}
-              required
             />
           </div>
           <div className="form-control">
@@ -526,7 +511,6 @@ const UpdateProfile = () => {
               className="input input-bordered"
               value={formData.zipCode}
               onChange={handleChange}
-              required
             />
           </div>
           <div className="form-control mt-6">

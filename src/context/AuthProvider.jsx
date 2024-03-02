@@ -33,7 +33,7 @@ const AuthProvider = ({ children }) => {
           loading: false,
           user: response.data.user,
         });
-        console.log(authInfo.user);
+        // console.log(authInfo.user);
       } else {
         throw new Error(response.data.message);
       }
@@ -41,6 +41,7 @@ const AuthProvider = ({ children }) => {
       throw new Error(error.message);
     }
   };
+
   const checkAuth = async () => {
     try {
       const accessToken = localStorage.getItem("accessToken");
@@ -92,12 +93,47 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+  const login = async (formData, navigate) => {
+    try {
+      const res = await axios.post(
+        "https://aporvis-server.vercel.app/api/user/login",
+        formData
+      );
+      if (res.data.error) {
+        enqueueSnackbar(res.data.error, { variant: "error" });
+      } else {
+        // Store the token in localStorage
+        localStorage.setItem("accessToken", res.data.accessToken);
+        enqueueSnackbar("Login successful", { variant: "success" });
+        setAuthInfo({
+          loading: false,
+          user: res.data.user, // Assuming you're returning user data after login
+        });
+        navigate("/update-profile");
+      }
+    } catch (error) {
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        enqueueSnackbar(error.response.data.message, { variant: "error" });
+      } else {
+        enqueueSnackbar("An error occurred while logging in.", {
+          variant: "error",
+        });
+      }
+    }
+  };
+
   useEffect(() => {
     checkAuth();
   }, []);
 
   return (
-    <AuthContext.Provider value={{ ...authInfo, logout, updateUserProfile }}>
+    <AuthContext.Provider
+      value={{ ...authInfo, login, logout, updateUserProfile }}
+    >
       {children}
     </AuthContext.Provider>
   );
