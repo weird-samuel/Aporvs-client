@@ -1,17 +1,56 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-unescaped-entities */
-import { useState } from "react";
+
+import { useState, useEffect } from "react";
 import UserGreeting from "../../components/UserGreeting";
 import { IoEyeOutline, IoTrash } from "react-icons/io5";
-import { FaRegEdit } from "react-icons/fa";
 import { FiRefreshCw } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
+import { enqueueSnackbar } from "notistack";
+import axios from "axios";
 
 const UserDashboard = () => {
   const navigate = useNavigate();
   const [status, setStatus] = useState("approved"); // State to track active status
+  const [applications, setApplications] = useState([]);
+
+  useEffect(() => {
+    fetchDashboardData();
+  }, []); // Fetch data only once when component mounts
 
   const handleStatusChange = (newStatus) => {
     setStatus(newStatus);
+  };
+
+  const authToken = localStorage.getItem("accessToken");
+  const config = {
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+    },
+  };
+  const fetchDashboardData = async () => {
+    try {
+      const res = await axios.get(
+        "https://aporvis-server.vercel.app/api/user/dashboard",
+        config
+      );
+      if (res.data.success) {
+        // console.log(res.data);
+        const { pending, rejected, approved } = res.data;
+
+        // Combine all applications
+        const allApplications = [...pending, ...rejected, ...approved];
+        setApplications(allApplications);
+      } else {
+        enqueueSnackbar("An error occurred:", res.data.message, {
+          variant: "error",
+        });
+      }
+    } catch (error) {
+      enqueueSnackbar("An error occurred:", error.message, {
+        variant: "error",
+      });
+    }
   };
 
   return (
@@ -19,6 +58,7 @@ const UserDashboard = () => {
       <UserGreeting />
       <div className="px-4 xl:px-24 justify-center mt-8">
         <div className="flex flex-col md:flex-row md:w-full justify-between overflow-x-auto mb-2 space-y-2 md:space-y-0">
+          {/* Status buttons */}
           <div className="flex flex-wrap md:flex-nowrap space-x-1">
             <button
               className={`btn ${
@@ -28,7 +68,8 @@ const UserDashboard = () => {
               }`}
               onClick={() => handleStatusChange("approved")}
             >
-              Approved (1)
+              Approved (
+              {applications.filter((app) => app.status === "approved").length})
             </button>
             <button
               className={`btn ${
@@ -38,7 +79,8 @@ const UserDashboard = () => {
               }`}
               onClick={() => handleStatusChange("rejected")}
             >
-              Rejected (0)
+              Rejected (
+              {applications.filter((app) => app.status === "rejected").length})
             </button>
             <button
               className={`btn ${
@@ -48,9 +90,11 @@ const UserDashboard = () => {
               }`}
               onClick={() => handleStatusChange("pending")}
             >
-              Pending (1)
+              Pending (
+              {applications.filter((app) => app.status === "pending").length})
             </button>
           </div>
+          {/* Action buttons */}
           <div className="flex flex-wrap md:flex-nowrap space-x-1">
             <button
               className="btn hover:text-[#E8E6EA] hover:bg-[#191D31] transition-all duration-300 ease-in-out"
@@ -64,37 +108,37 @@ const UserDashboard = () => {
           </div>
         </div>
 
+        {/* Applications table */}
         <div className="overflow-x-auto">
           <table className="table table-xs">
             <thead>
               <tr className="text-[#191D31] font-bold">
-                <th>Application ID</th>
+                <th>Appointment Date</th>
+                <th>Visa Type</th>
+                <th>Processing Country</th>
                 <th>Reference ID</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody className="text-[#191D31]">
-              <tr className={status === "approved" ? "" : "hidden"}>
-                <td>001</td>
-                <td>Ref11</td>
-                <td>
-                  <div className="flex space-x-1">
-                    <IoEyeOutline />
-                    <IoTrash className="text-red-600" />
-                  </div>
-                </td>
-              </tr>
-              <tr className={status === "pending" ? "" : "hidden"}>
-                <td>003</td>
-                <td>Ref13</td>
-                <td>
-                  <div className="flex space-x-1">
-                    <FaRegEdit />
-                    <FiRefreshCw />
-                    <IoTrash className="text-red-600" />
-                  </div>
-                </td>
-              </tr>
+              {applications.map((app) => (
+                <tr
+                  key={app.id}
+                  className={status === app.status ? "" : "hidden"}
+                >
+                  <td>{app.appointmentDate}</td>
+                  <td>{app.visaType}</td>
+                  <td>{app.processingCountry}</td>
+                  <td>{app.referenceId}</td>
+                  <td>
+                    <div className="flex space-x-1">
+                      {app.status === "pending" && <FiRefreshCw />}
+                      <IoEyeOutline />
+                      <IoTrash className="text-red-600" />
+                    </div>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

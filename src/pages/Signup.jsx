@@ -25,7 +25,7 @@ const Signup = () => {
       if (res.data.error) {
         enqueueSnackbar(res.data.error, { variant: "error" });
       } else {
-        enqueueSnackbar("Login successful", { variant: "success" });
+        enqueueSnackbar("Signup successful", { variant: "success" });
         navigate("/login");
       }
     } catch (error) {

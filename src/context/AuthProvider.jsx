@@ -1,6 +1,5 @@
-import { createContext, useEffect } from "react";
+import { createContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { useState } from "react";
 import axios from "axios";
 import { enqueueSnackbar } from "notistack";
 
@@ -11,8 +10,37 @@ const AuthProvider = ({ children }) => {
     loading: true,
     user: null,
   });
-  console.log(authInfo);
 
+  const updateUserProfile = async (data) => {
+    try {
+      const accessToken = localStorage.getItem("accessToken");
+      if (!accessToken) {
+        throw new Error("Access token not found");
+      }
+
+      const response = await axios.patch(
+        "https://aporvis-server.vercel.app/api/user/updateprofile",
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+
+      if (response.data.success) {
+        setAuthInfo({
+          loading: false,
+          user: response.data.user,
+        });
+        console.log(authInfo.user);
+      } else {
+        throw new Error(response.data.message);
+      }
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  };
   const checkAuth = async () => {
     try {
       const accessToken = localStorage.getItem("accessToken");
@@ -41,10 +69,6 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    checkAuth();
-  }, []);
-
   const logout = async () => {
     try {
       const accessToken = localStorage.getItem("accessToken");
@@ -68,8 +92,12 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+  useEffect(() => {
+    checkAuth();
+  }, []);
+
   return (
-    <AuthContext.Provider value={{ ...authInfo, logout }}>
+    <AuthContext.Provider value={{ ...authInfo, logout, updateUserProfile }}>
       {children}
     </AuthContext.Provider>
   );

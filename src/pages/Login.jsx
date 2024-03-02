@@ -28,8 +28,8 @@ const Login = () => {
         // Store the token in localStorage
         localStorage.setItem("accessToken", res.data.accessToken);
         enqueueSnackbar("Login successful", { variant: "success" });
-        console.log(res.data.accessToken);
-        navigate("/dashboard");
+        // console.log(res.data.accessToken);
+        navigate("/update-profile");
       }
     } catch (error) {
       if (

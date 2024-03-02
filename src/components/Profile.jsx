@@ -33,9 +33,9 @@ const Profile = ({ user }) => {
             htmlFor="my-drawer-4"
             className="btn btn-ghost btn-circle avatar"
           >
-            {user.photoURL ? (
+            {user.image ? (
               <div className="w-8 rounded-full">
-                <img alt="img-here" src={user.photoURL} />
+                <img alt="img-here" src={user.image} />
               </div>
             ) : (
               <FaRegUser className="text-2xl rounded-full overflow-hidden" />

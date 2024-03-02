@@ -25,7 +25,7 @@ const UserGreeting = () => {
   return (
     <section className="w-full bg-[#191D31] text-[#E8E6EA] px-8 py-2 xl:px-24 flex justify-between">
       <h2>
-        Good {hour}, {user.displayName}
+        Good {hour}, {user.firstName}
       </h2>
       {location.pathname === "/dashboard" ? (
         <h2>Dashboard</h2>

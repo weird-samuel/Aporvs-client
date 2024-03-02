@@ -9,7 +9,7 @@ const Navbar = () => {
   // console.log(user);
   const location = useLocation();
   return (
-    <header className="container mx-auto p-4 flex items-center justify-between z-10">
+    <header className="container mx-auto p-4 flex items-center justify-between z-20">
       <div className="navbar">
         <div className="navbar-start">
           <Link
@@ -29,7 +29,7 @@ const Navbar = () => {
           ) : (
             <Link
               to={"/login"}
-              className="btn btn-ghost rounded-full px-6 flex items-center gap-2 bg-base-200 transition-all duration-300"
+              className="btn btn-ghost rounded-full px-6 flex items-center gap-2 bg-base-200 transition-all duration-300 z-20"
             >
               <FaRegUser /> Login
             </Link>
