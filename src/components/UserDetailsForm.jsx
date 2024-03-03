@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
+import { enqueueSnackbar } from "notistack";
 
 const UserDetailsForm = () => {
   const [formData, setFormData] = useState({
@@ -18,28 +19,31 @@ const UserDetailsForm = () => {
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
-  console.log(formData);
+  // console.log(formData);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(formData);
     try {
+      const token = localStorage.getItem("accessToken");
       const response = await axios.post(
-        `https://aporvis-server.vercel.app/api/user/application?id=${localStorage.getItem(
-          "userId"
-        )}`,
+        `https://aporvis-server.vercel.app/api/user/application?id=${localStorage.userId}`,
         formData,
         {
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
         }
       );
       if (response.data.success) {
-        console.log("Application submitted successfully");
+        enqueueSnackbar("Application submitted successfully", {
+          variant: "success",
+        });
       }
     } catch (error) {
-      console.error("Failed to submit form:", error.message);
+      enqueueSnackbar("Failed to submit form:", error.message, {
+        variant: "error",
+      });
     }
   };
   return (

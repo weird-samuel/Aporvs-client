@@ -84,6 +84,7 @@ const AuthProvider = ({ children }) => {
       });
 
       localStorage.removeItem("accessToken");
+      localStorage.removeItem("userId");
       setAuthInfo({
         loading: false,
         user: null,
@@ -109,6 +110,7 @@ const AuthProvider = ({ children }) => {
           loading: false,
           user: res.data.user, // Assuming you're returning user data after login
         });
+        localStorage.setItem("userId", res.data.user.id);
       }
     } catch (error) {
       if (

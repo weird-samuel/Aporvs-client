@@ -13,7 +13,6 @@ const UserDashboard = () => {
   const navigate = useNavigate();
   const [status, setStatus] = useState("approved"); // State to track active status
   const [applications, setApplications] = useState([]);
-
   useEffect(() => {
     fetchDashboardData();
   }, []); // Fetch data only once when component mounts
@@ -35,19 +34,36 @@ const UserDashboard = () => {
         config
       );
       if (res.data.success) {
-        // console.log(res.data);
+        // console.log(applications);
         const { pending, rejected, approved } = res.data;
+        // Mapping over each array and adding the "status" field
+        const pendingWithStatus = pending.map((app) => ({
+          ...app,
+          status: "pending",
+        }));
+        const rejectedWithStatus = rejected.map((app) => ({
+          ...app,
+          status: "rejected",
+        }));
+        const approvedWithStatus = approved.map((app) => ({
+          ...app,
+          status: "approved",
+        }));
 
         // Combine all applications
-        const allApplications = [...pending, ...rejected, ...approved];
+        const allApplications = [
+          ...pendingWithStatus,
+          ...rejectedWithStatus,
+          ...approvedWithStatus,
+        ];
         setApplications(allApplications);
       } else {
-        enqueueSnackbar("An error occurred:", res.data.message, {
+        enqueueSnackbar(`An error occurred: ${res.data.message}`, {
           variant: "error",
         });
       }
     } catch (error) {
-      enqueueSnackbar("An error occurred:", error.message, {
+      enqueueSnackbar(`An error occurred: ${error.message}`, {
         variant: "error",
       });
     }
@@ -110,9 +126,9 @@ const UserDashboard = () => {
 
         {/* Applications table */}
         <div className="overflow-x-auto">
-          <table className="table table-xs">
+          <table className="table table-md">
             <thead>
-              <tr className="text-[#191D31] font-bold">
+              <tr className="text-[#191D31] text-[15px] font-bold">
                 <th>Appointment Date</th>
                 <th>Visa Type</th>
                 <th>Processing Country</th>
@@ -123,16 +139,18 @@ const UserDashboard = () => {
             <tbody className="text-[#191D31]">
               {applications.map((app) => (
                 <tr
-                  key={app.id}
+                  key={app._id}
                   className={status === app.status ? "" : "hidden"}
                 >
                   <td>{app.appointmentDate}</td>
                   <td>{app.visaType}</td>
                   <td>{app.processingCountry}</td>
-                  <td>{app.referenceId}</td>
+                  <td>{app.referenceNumber}</td>
                   <td>
                     <div className="flex space-x-1">
-                      {app.status === "pending" && <FiRefreshCw />}
+                      {app.status === "pending" && (
+                        <FiRefreshCw className="cursor-pointer" />
+                      )}
                       <IoEyeOutline />
                       <IoTrash className="text-red-600" />
                     </div>
