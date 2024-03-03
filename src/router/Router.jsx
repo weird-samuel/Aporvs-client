@@ -12,6 +12,7 @@ import AdminDashboardLayout from "../layout/AdminDashboardLayout";
 import AdminDashboard from "../pages/Dashboard/AdminDashboard";
 import Users from "../pages/Users";
 import ApplicationForm from "../pages/ApplicationForm";
+import BookAppointment from "../pages/BookAppointment";
 
 const Router = createBrowserRouter([
   {
@@ -22,6 +23,7 @@ const Router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+        errorElement: <Error />,
       },
       {
         path: "/dashboard",
@@ -44,6 +46,14 @@ const Router = createBrowserRouter([
         element: (
           <PrivateRouter>
             <ApplicationForm />
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "/book-appointment",
+        element: (
+          <PrivateRouter>
+            <BookAppointment />
           </PrivateRouter>
         ),
       },

@@ -13,9 +13,9 @@ const UserGreeting = () => {
   const getHour = () => {
     const date = new Date();
     const hour = date.getHours();
-    if (hour >= 5 && hour < 12) {
+    if (hour >= 1 && hour < 12) {
       setHour("morning");
-    } else if (hour >= 12 && hour < 18) {
+    } else if (hour >= 12 && hour < 16) {
       setHour("afternoon");
     } else {
       setHour("evening");
@@ -29,8 +29,10 @@ const UserGreeting = () => {
       </h2>
       {location.pathname === "/dashboard" ? (
         <h2>Dashboard</h2>
-      ) : (
+      ) : location.pathname === "/new-application" ? (
         <h2>Application Page</h2>
+      ) : (
+        <h2>Appointment Booking</h2>
       )}
     </section>
   );

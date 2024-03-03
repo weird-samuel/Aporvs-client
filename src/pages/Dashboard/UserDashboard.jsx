@@ -118,7 +118,10 @@ const UserDashboard = () => {
             >
               New Application
             </button>
-            <button className="btn hover:text-[#E8E6EA] hover:bg-[#191D31] transition-all duration-300 ease-in-out">
+            <button
+              className="btn hover:text-[#E8E6EA] hover:bg-[#191D31] transition-all duration-300 ease-in-out"
+              onClick={() => navigate("/book-appointment")}
+            >
               Book Appointment
             </button>
           </div>
@@ -142,7 +145,7 @@ const UserDashboard = () => {
                   key={app._id}
                   className={status === app.status ? "" : "hidden"}
                 >
-                  <td>{app.appointmentDate}</td>
+                  <td>{app.appointmentDate.substring(0, 10)}</td>
                   <td>{app.visaType}</td>
                   <td>{app.processingCountry}</td>
                   <td>{app.referenceNumber}</td>

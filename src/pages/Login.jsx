@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthProvider";
 // import { enqueueSnackbar } from "notistack";
 
@@ -14,15 +14,13 @@ const Login = () => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
-  const navigate = useNavigate();
-
   const handleSubmit = (event) => {
     event.preventDefault();
     login(formData);
   };
 
   return user ? (
-    navigate("/dashboard")
+    <Navigate to="/dashboard" />
   ) : (
     <section className="max-h-screen">
       <div className="my-20">

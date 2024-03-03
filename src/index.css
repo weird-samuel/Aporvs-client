@@ -8,9 +8,9 @@
 html {
     font-family: 'Avenir LT Pro', sans-serif;
     /* font-family: 'Times New Roman', Times, serif; */
-    user-select: none;
+    /* user-select: none;
     -moz-user-select: none;
-    -webkit-user-select: none;
+    -webkit-user-select: none; */
     scrollbar-width: thin;
 }
 
