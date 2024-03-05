@@ -1,21 +1,15 @@
-import { useState, useEffect } from "react";
+/* eslint-disable react/no-unescaped-entities */
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSnackbar } from "notistack";
+import { useNavigate } from "react-router-dom";
 
 const AdminDashboard = () => {
-  const [ip, setIp] = useState("");
+  const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
+  const [data, setData] = useState(null);
 
   useEffect(() => {
-    const fetchIp = async () => {
-      try {
-        const response = await axios.get("https://api.ipify.org?format=json");
-        setIp(response.data.ip);
-      } catch (error) {
-        enqueueSnackbar("Error fetching IP address", { variant: "error" });
-      }
-    };
-
     const config = {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -23,70 +17,64 @@ const AdminDashboard = () => {
     };
 
     const getAdminDashboard = async () => {
-      const res = await axios.get(
-        "https://aporvis-server.vercel.app/api/admin/dashboard",
-        config
-      );
-      console.log(res);
+      try {
+        const res = await axios.get(
+          "https://aporvis-server.vercel.app/api/admin/dashboard",
+          config
+        );
+        setData(res.data);
+      } catch (error) {
+        enqueueSnackbar(`Error: ${error.message}`, { variant: "error" });
+      }
     };
 
     getAdminDashboard();
-
-    fetchIp();
   }, [enqueueSnackbar]);
 
   return (
-    <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4">
-      {/*  */}
-      <div className="rounded-3xl overflow-hidden shadow-lg bg-[#DCDCDD] m-4">
-        <img className="w-[310px] h-[220px]" />
-        <div className="px-6 py-4">
-          <div className="font-bold text-xl mb-2">Your IP is </div>
-          <p className="text-gray-700 text-base">{ip}</p>
+    <div className="container mx-auto px-4 py-8 max-w-lg">
+      <div className="grid grid-cols-2 gap-6 md:gap-12">
+        <div
+          className="bg-white rounded-lg p-6 shadow-md cursor-pointer"
+          onClick={() => navigate("/admin/dashboard/appointments")}
+        >
+          <h2 className="text-xl font-semibold mb-2">Appointments</h2>
+          <p className="text-gray-600">
+            Appointment Count : {data ? data.allAppointments.length : ""}
+          </p>
+        </div>
+
+        <div
+          className="bg-white rounded-lg p-6 shadow-md cursor-pointer"
+          onClick={() => navigate("/admin/dashboard/applications")}
+        >
+          <h2 className="text-xl font-semibold mb-2">Applications</h2>
+          <p className="text-gray-600">
+            Application count: {data ? data.allApplications.length : ""}
+          </p>
+        </div>
+
+        <div
+          className="bg-white rounded-lg p-6 shadow-md cursor-pointer"
+          onClick={() => navigate("/admin/dashboard/admins")}
+        >
+          <h2 className="text-xl font-semibold mb-2">All Admins</h2>
+          <p className="text-gray-600">
+            Admin count: {data ? data.allAdmins.length : ""}
+          </p>
+        </div>
+
+        <div
+          className="bg-white rounded-lg p-6 shadow-md cursor-pointer"
+          onClick={() => navigate("/admin/dashboard/users")}
+        >
+          <h2 className="text-xl font-semibold mb-2">All Users</h2>
+          <p className="text-gray-600">
+            User count: {data ? data.allUsers.length : ""}
+          </p>
         </div>
       </div>
-      {/*  */}
-      <div className="rounded-3xl overflow-hidden shadow-lg bg-[#DCDCDD] m-4">
-        <img className="w-[310px] h-[220px]" />
-        <div className="px-6 py-4">
-          <div className="font-bold text-xl mb-2">Your IP is </div>
-          <p className="text-gray-700 text-base">{ip}</p>
-        </div>
-      </div>
-      {/*  */}
-      <div className="rounded-3xl overflow-hidden shadow-lg bg-[#DCDCDD] m-4">
-        <img className="w-[310px] h-[220px]" />
-        <div className="px-6 py-4">
-          <div className="font-bold text-xl mb-2">Your IP is </div>
-          <p className="text-gray-700 text-base">{ip}</p>
-        </div>
-      </div>
-      {/*  */}
-      <div className="rounded-3xl overflow-hidden shadow-lg bg-[#DCDCDD] m-4">
-        <img className="w-[310px] h-[220px]" />
-        <div className="px-6 py-4">
-          <div className="font-bold text-xl mb-2">Your IP is </div>
-          <p className="text-gray-700 text-base">{ip}</p>
-        </div>
-      </div>
-      {/*  */}
-      <div className="rounded-3xl overflow-hidden shadow-lg bg-[#DCDCDD] m-4">
-        <img className="w-[310px] h-[220px]" />
-        <div className="px-6 py-4">
-          <div className="font-bold text-xl mb-2">Your IP is </div>
-          <p className="text-gray-700 text-base">{ip}</p>
-        </div>
-      </div>
-      {/*  */}
-      <div className="rounded-3xl overflow-hidden shadow-lg bg-[#DCDCDD] m-4">
-        <img className="w-[310px] h-[220px]" />
-        <div className="px-6 py-4">
-          <div className="font-bold text-xl mb-2">Your IP is </div>
-          <p className="text-gray-700 text-base">{ip}</p>
-        </div>
-      </div>
-      {/*  */}
-    </section>
+    </div>
   );
 };
 

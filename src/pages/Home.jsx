@@ -26,7 +26,7 @@ const Home = () => {
               {user ? (
                 <Link
                   className="md:hidden flex btn text-[#E8E6EA] bg-[#1F1F1F] hover:bg-[#1F1F1F] border-none outline-none px-10 py-3 font-semibold"
-                  to={"/dashboard"}
+                  to={user.role === "admin" ? "/admin/dashboard" : "/dashboard"}
                 >
                   Dashboard
                 </Link>

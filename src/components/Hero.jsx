@@ -25,7 +25,7 @@ const Hero = () => {
           {user ? (
             <Link
               className="hidden md:flex w-48 btn text-[#E8E6EA] bg-[#1F1F1F] hover:bg-[#1F1F1F] border-none outline-none font-semibold"
-              to={"/dashboard"}
+              to={user.role === "admin" ? "/admin/dashboard" : "/dashboard"}
             >
               Go To Dashboard
             </Link>
