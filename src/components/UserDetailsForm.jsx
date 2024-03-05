@@ -3,8 +3,10 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import { enqueueSnackbar } from "notistack";
+import { useNavigate } from "react-router-dom";
 
 const UserDetailsForm = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     // nationality: "",
     // passportType: "",
@@ -19,7 +21,7 @@ const UserDetailsForm = () => {
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
-  // console.log(formData);
+  console.log(formData);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -39,9 +41,10 @@ const UserDetailsForm = () => {
         enqueueSnackbar("Application submitted successfully", {
           variant: "success",
         });
+        navigate("/dashboard");
       }
     } catch (error) {
-      enqueueSnackbar("Failed to submit form:", error.message, {
+      enqueueSnackbar(`Failed to submit form: ${error.message}`, {
         variant: "error",
       });
     }
@@ -69,24 +72,46 @@ const UserDetailsForm = () => {
           </select>
         </div>
         <div className="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <div>
-            <label
-              className="block text-sm font-medium mb-2"
-              htmlFor="numberOfEntries"
-            >
-              Number of Entries
-            </label>
-            <input
-              className="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
-              type="number"
-              min={1}
-              required
-              name="numberOfEntries"
-              id="numberOfEntries"
-              value={formData.numberOfEntries}
-              onChange={handleChange}
-            />
-          </div>
+          {formData.visaType === "multiple" ? (
+            <div>
+              <label
+                className="block text-sm font-medium mb-2"
+                htmlFor="numberOfEntries"
+              >
+                Number of Entries
+              </label>
+              <input
+                className="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                type="number"
+                min={2} // Minimum value is 2 for multiple entry
+                required
+                name="numberOfEntries"
+                id="numberOfEntries"
+                value={formData.numberOfEntries}
+                onChange={handleChange}
+              />
+            </div>
+          ) : (
+            <div>
+              <label
+                className="block text-sm font-medium mb-2"
+                htmlFor="numberOfEntries"
+              >
+                Number of Entries
+              </label>
+              <input
+                className="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                type="number"
+                max={1} //  value is 1 for other visa types
+                required
+                name="numberOfEntries"
+                id="numberOfEntries"
+                value={formData.numberOfEntries}
+                onChange={handleChange}
+              />
+            </div>
+          )}
+
           <div>
             <label
               className="block text-sm font-medium mb-2"
@@ -385,7 +410,7 @@ const UserDetailsForm = () => {
           />
         </div>
       </form>
-      <div className="rounded-3xl overflow-hidden shadow-lg bg-[#DCDCDD] m-4 w-1/3">
+      <div className="rounded-3xl overflow-hidden shadow-lg bg-[#DCDCDD] hidden lg:flex m-4 w-1/3">
         <div className="px-6 py-4">
           <div className="font-bold text-xl mb-2">Your IP is </div>
           <p className="text-gray-700 text-base">234</p>

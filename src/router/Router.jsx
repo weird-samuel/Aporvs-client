@@ -13,6 +13,7 @@ import AdminDashboard from "../pages/Dashboard/AdminDashboard";
 import Users from "../pages/Users";
 import ApplicationForm from "../pages/ApplicationForm";
 import BookAppointment from "../pages/BookAppointment";
+import AdmiiRouter from "../protectedRoutes/AdminRouter";
 
 const Router = createBrowserRouter([
   {
@@ -74,9 +75,9 @@ const Router = createBrowserRouter([
   {
     path: "/admin",
     element: (
-      <PrivateRouter>
+      <AdmiiRouter>
         <AdminDashboardLayout />
-      </PrivateRouter>
+      </AdmiiRouter>
     ),
     errorElement: <Error />,
     children: [

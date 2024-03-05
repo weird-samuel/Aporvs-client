@@ -35,7 +35,7 @@ const BookAppointment = () => {
       });
       navigate("/dashboard");
     } catch (error) {
-      enqueueSnackbar(error.message, { variant: "error" });
+      enqueueSnackbar(`Invalid reference number`, { variant: "error" });
     }
   };
   return (

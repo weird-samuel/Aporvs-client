@@ -7,7 +7,7 @@ import { SnackbarProvider } from "notistack";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <AuthProvider>
-    <SnackbarProvider maxSnack={1}>
+    <SnackbarProvider maxSnack={2}>
       <RouterProvider router={router} />
     </SnackbarProvider>
   </AuthProvider>

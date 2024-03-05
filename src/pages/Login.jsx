@@ -5,6 +5,7 @@ import { AuthContext } from "../context/AuthProvider";
 
 const Login = () => {
   const { login, user } = useContext(AuthContext);
+  console.log(user);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -20,7 +21,11 @@ const Login = () => {
   };
 
   return user ? (
-    <Navigate to="/dashboard" />
+    user.role === "admin" ? (
+      <Navigate to="/admin/dashboard" />
+    ) : (
+      <Navigate to="/dashboard" />
+    )
   ) : (
     <section className="max-h-screen">
       <div className="my-20">

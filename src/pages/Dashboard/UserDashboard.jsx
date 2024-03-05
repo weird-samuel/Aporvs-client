@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from "react";
 import UserGreeting from "../../components/UserGreeting";
-import { IoEyeOutline, IoTrash } from "react-icons/io5";
+import { IoTrash } from "react-icons/io5";
 import { FiRefreshCw } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { enqueueSnackbar } from "notistack";
@@ -27,6 +27,7 @@ const UserDashboard = () => {
       Authorization: `Bearer ${authToken}`,
     },
   };
+
   const fetchDashboardData = async () => {
     try {
       const res = await axios.get(
@@ -66,6 +67,32 @@ const UserDashboard = () => {
       enqueueSnackbar(`An error occurred: ${error.message}`, {
         variant: "error",
       });
+    }
+  };
+
+  const deleteApplication = async (referenceNumber) => {
+    try {
+      const res = await axios.delete(
+        `https://aporvis-server.vercel.app/api/user/application?referenceNumber=${referenceNumber}`,
+        config
+      );
+      if (res.data.success) {
+        enqueueSnackbar(`Application deleted successfully`, {
+          variant: "success",
+        });
+        fetchDashboardData();
+      } else {
+        enqueueSnackbar(`Failed to delete application: ${res.data.message}`, {
+          variant: "error",
+        });
+      }
+    } catch (error) {
+      enqueueSnackbar(
+        `An error occurred while deleting application: ${error.message}`,
+        {
+          variant: "error",
+        }
+      );
     }
   };
 
@@ -145,17 +172,35 @@ const UserDashboard = () => {
                   key={app._id}
                   className={status === app.status ? "" : "hidden"}
                 >
-                  <td>{app.appointmentDate.substring(0, 10)}</td>
+                  <td>
+                    {app.appointmentDate
+                      ? app.appointmentDate.substring(0, 10)
+                      : (() => {
+                          enqueueSnackbar(
+                            `Book an appointment now for application with ${app.referenceNumber}`,
+                            {
+                              variant: "warning",
+                            }
+                          );
+                          return "";
+                        })()}
+                    {/* error dey here, come back to it later */}
+                  </td>
                   <td>{app.visaType}</td>
                   <td>{app.processingCountry}</td>
                   <td>{app.referenceNumber}</td>
                   <td>
                     <div className="flex space-x-1">
                       {app.status === "pending" && (
-                        <FiRefreshCw className="cursor-pointer" />
+                        <FiRefreshCw
+                          className="cursor-pointer"
+                          onClick={() => location.reload()}
+                        />
                       )}
-                      <IoEyeOutline />
-                      <IoTrash className="text-red-600" />
+                      <IoTrash
+                        className="text-red-600 cursor-pointer"
+                        onClick={() => deleteApplication(app.referenceNumber)}
+                      />
                     </div>
                   </td>
                 </tr>

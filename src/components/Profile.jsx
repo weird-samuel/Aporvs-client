@@ -53,9 +53,15 @@ const Profile = ({ user }) => {
             <li>
               <a href="/update-profile">Profile</a>
             </li>
-            <li>
-              <Link to={"/dashboard"}>Dashboard</Link>
-            </li>
+            {user.role === "admin" ? (
+              <li>
+                <a href="/admin/dashboard">Dashboard</a>
+              </li>
+            ) : (
+              <li>
+                <Link to={"/dashboard"}>Dashboard</Link>
+              </li>
+            )}
             <li>
               <a onClick={handleLogout}>Logout</a>
             </li>
