@@ -103,7 +103,7 @@ const AuthProvider = ({ children }) => {
       if (res.data.error) {
         enqueueSnackbar(res.data.error, { variant: "error" });
       } else {
-        console.log(res.data);
+        // console.log(res.data);
         // Store the token in localStorage
         localStorage.setItem("accessToken", res.data.accessToken);
         enqueueSnackbar("Login successful", { variant: "success" });
@@ -111,7 +111,7 @@ const AuthProvider = ({ children }) => {
           loading: false,
           user: res.data.user, // Assuming you're returning user data after login
         });
-        console.log(authInfo);
+        // console.log(authInfo);
         localStorage.setItem("userId", res.data.user.id);
       }
     } catch (error) {

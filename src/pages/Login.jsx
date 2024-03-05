@@ -5,7 +5,7 @@ import { AuthContext } from "../context/AuthProvider";
 
 const Login = () => {
   const { login, user } = useContext(AuthContext);
-  console.log(user);
+  // console.log(user);
   const [formData, setFormData] = useState({
     email: "",
     password: "",

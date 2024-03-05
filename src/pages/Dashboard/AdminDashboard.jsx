@@ -16,6 +16,22 @@ const AdminDashboard = () => {
       }
     };
 
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    };
+
+    const getAdminDashboard = async () => {
+      const res = await axios.get(
+        "https://aporvis-server.vercel.app/api/admin/dashboard",
+        config
+      );
+      console.log(res);
+    };
+
+    getAdminDashboard();
+
     fetchIp();
   }, [enqueueSnackbar]);
 
