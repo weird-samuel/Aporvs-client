@@ -1,9 +1,7 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import {
-  MdDashboard,
-  MdDashboardCustomize,
-  MdOutlineSupportAgent,
-} from "react-icons/md";
+import { MdDashboard, MdDashboardCustomize } from "react-icons/md";
+import { RiStackFill } from "react-icons/ri";
+import { AiOutlineSchedule } from "react-icons/ai";
 import { FaUsers } from "react-icons/fa6";
 import { FaEdit, FaLocationArrow, FaUser } from "react-icons/fa";
 import { useContext } from "react";
@@ -19,9 +17,9 @@ const sharedLinks = (
       </Link>
     </li>
     <li>
-      <Link to={"/customer-support"}>
-        <MdOutlineSupportAgent />
-        Customer Support
+      <Link to={"/admin/manage-admin"}>
+        <FaEdit />
+        manage Admins
       </Link>
     </li>
   </>
@@ -88,15 +86,21 @@ const AdminDashboardLayout = () => {
               </Link>
             </li>
             <li>
-              <Link to={"/admin/manage-admin"}>
-                <FaEdit />
-                manage Admins
-              </Link>
-            </li>
-            <li>
               <Link to={"/admin/dashboard/users"}>
                 <FaUsers />
                 All Users
+              </Link>
+            </li>
+            <li>
+              <Link to={"/admin/dashboard/applications"}>
+                <RiStackFill />
+                Pending Applications
+              </Link>
+            </li>
+            <li>
+              <Link to={"/admin/dashboard/appointments"}>
+                <AiOutlineSchedule />
+                All Appointments
               </Link>
             </li>
             <li>

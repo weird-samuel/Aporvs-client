@@ -14,6 +14,9 @@ import Users from "../pages/Users";
 import ApplicationForm from "../pages/ApplicationForm";
 import BookAppointment from "../pages/BookAppointment";
 import AdmiiRouter from "../protectedRoutes/AdminRouter";
+import ManageAdmin from "../pages/Admins";
+import Appointments from "../pages/Appointments";
+import PendingApplications from "../pages/PendingApplications";
 
 const Router = createBrowserRouter([
   {
@@ -88,6 +91,18 @@ const Router = createBrowserRouter([
       {
         path: "/admin/dashboard/users",
         element: <Users />,
+      },
+      {
+        path: "/admin/manage-admin",
+        element: <ManageAdmin />,
+      },
+      {
+        path: "/admin/dashboard/applications",
+        element: <PendingApplications />,
+      },
+      {
+        path: "/admin/dashboard/appointments",
+        element: <Appointments />,
       },
     ],
   },

@@ -56,7 +56,7 @@ const AdminDashboard = () => {
 
         <div
           className="bg-white rounded-lg p-6 shadow-md cursor-pointer"
-          onClick={() => navigate("/admin/dashboard/admins")}
+          onClick={() => navigate("/admin/manage-admin")}
         >
           <h2 className="text-xl font-semibold mb-2">All Admins</h2>
           <p className="text-gray-600">

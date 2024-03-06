@@ -18,12 +18,12 @@ const Users = () => {
         "https://aporvis-server.vercel.app/api/admin/users",
         config
       );
-      // setUsers(res.data.users);
-      const filteredUsers = res.data.users.filter(
-        (user) => user.role === "applicant"
-      );
+      setUsers(res.data.users);
+      // const filteredUsers = res.data.users.filter(
+      //   (user) => user.role === "applicant"
+      // );
 
-      setUsers(filteredUsers);
+      // setUsers(filteredUsers);
       // console.log(users);
       if (res.data.error) {
         enqueueSnackbar(res.data.error, { variant: "error" });
@@ -40,7 +40,7 @@ const Users = () => {
           variant: "error",
         });
       } else {
-        enqueueSnackbar("An error occurred.", {
+        enqueueSnackbar(`An error occurred ${error.message}`, {
           variant: "error",
         });
       }
