@@ -1,5 +1,5 @@
-import UserGreeting from "../components/UserGreeting";
-import UserDetailsForm from "../components/UserDetailsForm";
+import UserGreeting from "../../components/UserGreeting";
+import UserDetailsForm from "../../components/UserDetailsForm";
 
 const ApplicationForm = () => {
   return (

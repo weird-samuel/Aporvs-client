@@ -91,9 +91,15 @@ const Users = () => {
           {users
             ? users.map((user, index) => (
                 <tr key={index} className="capitalize">
-                  <td className="capitalize">{`${user.title} ${user.firstName}, ${user.lastName}`}</td>
+                  <td className="capitalize">
+                    {user.title
+                      ? `${user.title} ${user.firstName}, ${user.lastName}`
+                      : "Not Provided by user"}
+                  </td>
                   <td className="capitalize">{`${user.passportNumber}`}</td>
-                  <td className="capitalize">{`${user.phoneNumber}`}</td>
+                  <td className="capitalize">
+                    {user.phoneNumber ? `${user.phoneNumber}` : "null"}
+                  </td>
                   <td className="lowercase">{`${user.email}`}</td>
                   <td className="lowercase">{`${user.role}`}</td>
                   <td>

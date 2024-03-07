@@ -10,13 +10,13 @@ import UpdateProfile from "../pages/Dashboard/UpdateProfile";
 import ResetPassword from "../pages/ResetPassword";
 import AdminDashboardLayout from "../layout/AdminDashboardLayout";
 import AdminDashboard from "../pages/Dashboard/AdminDashboard";
-import Users from "../pages/Users";
-import ApplicationForm from "../pages/ApplicationForm";
-import BookAppointment from "../pages/BookAppointment";
+import Users from "../pages/admin/Users";
+import ApplicationForm from "../pages/client/ApplicationForm";
+import BookAppointment from "../pages/client/BookAppointment";
 import AdmiiRouter from "../protectedRoutes/AdminRouter";
-import ManageAdmin from "../pages/Admins";
-import Appointments from "../pages/Appointments";
-import PendingApplications from "../pages/PendingApplications";
+import ManageAdmin from "../pages/admin/Admins";
+import Appointments from "../pages/admin/Appointments";
+import PendingApplications from "../pages/admin/PendingApplications";
 
 const Router = createBrowserRouter([
   {

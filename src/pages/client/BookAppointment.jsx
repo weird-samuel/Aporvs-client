@@ -1,5 +1,5 @@
 import { useState } from "react";
-import UserGreeting from "../components/UserGreeting";
+import UserGreeting from "../../components/UserGreeting";
 import axios from "axios";
 import { enqueueSnackbar } from "notistack";
 import { useNavigate } from "react-router-dom";

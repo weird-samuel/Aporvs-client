@@ -19,7 +19,7 @@ const sharedLinks = (
     <li>
       <Link to={"/admin/manage-admin"}>
         <FaEdit />
-        manage Admins
+        manage Admin Rights
       </Link>
     </li>
   </>
