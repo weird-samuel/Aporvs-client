@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { AuthContext } from "../context/AuthProvider";
 import { useContext, useEffect, useState } from "react";
+import { enqueueSnackbar } from "notistack";
 
 const UserGreeting = () => {
   const location = useLocation();
@@ -8,8 +9,9 @@ const UserGreeting = () => {
   const [hour, setHour] = useState("");
 
   useEffect(() => {
-    getHour();
-  }, []);
+    if (!user.image && location.pathname === "/dashboard") getHour();
+  }, [user]);
+
   const getHour = () => {
     const date = new Date();
     const hour = date.getHours();

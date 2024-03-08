@@ -76,6 +76,9 @@ const Users = () => {
   getAllUsers();
   return (
     <section className="overflow-x-auto">
+      <div className="mb-6">
+        <h2 className="font-bold text-xl">All Users:</h2>
+      </div>
       <table className="table table-lg">
         <thead>
           <tr className="text-[#191D31] text-[15px] font-bold">

@@ -17,6 +17,7 @@ import AdmiiRouter from "../protectedRoutes/AdminRouter";
 import ManageAdmin from "../pages/admin/Admins";
 import Appointments from "../pages/admin/Appointments";
 import PendingApplications from "../pages/admin/PendingApplications";
+import ApproveVisa from "../pages/admin/ApproveVisa";
 
 const Router = createBrowserRouter([
   {
@@ -103,6 +104,10 @@ const Router = createBrowserRouter([
       {
         path: "/admin/dashboard/appointments",
         element: <Appointments />,
+      },
+      {
+        path: "/admin/approve-visa",
+        element: <ApproveVisa />,
       },
     ],
   },

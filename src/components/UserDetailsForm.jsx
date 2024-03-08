@@ -21,7 +21,7 @@ const UserDetailsForm = () => {
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
-  console.log(formData);
+  // console.log(formData);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -410,7 +410,7 @@ const UserDetailsForm = () => {
           />
         </div>
       </form>
-      <div className="rounded-3xl overflow-hidden shadow-lg bg-[#DCDCDD] hidden lg:flex m-4 w-1/3">
+      <div className="rounded-3xl overflow-hidden shadow-lg bg-[#DCDCDD] hidden m-4 w-1/3">
         <div className="px-6 py-4">
           <div className="font-bold text-xl mb-2">Your IP is </div>
           <p className="text-gray-700 text-base">234</p>
