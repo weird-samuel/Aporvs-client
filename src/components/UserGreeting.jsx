@@ -10,7 +10,7 @@ const UserGreeting = () => {
 
   useEffect(() => {
     if (!user.image && location.pathname === "/dashboard") getHour();
-  }, [user]);
+  }, [user, location.pathname]);
 
   const getHour = () => {
     const date = new Date();
