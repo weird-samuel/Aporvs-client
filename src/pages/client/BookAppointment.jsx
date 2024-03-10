@@ -33,7 +33,9 @@ const BookAppointment = () => {
       enqueueSnackbar(`Reservation Made, ${response.data.message}`, {
         variant: "success",
       });
-      navigate("/dashboard");
+      setInterval(() => {
+        navigate("/dashboard");
+      }, 1500);
     } catch (error) {
       enqueueSnackbar(`Invalid reference number`, { variant: "error" });
     }

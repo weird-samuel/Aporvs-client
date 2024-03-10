@@ -7,6 +7,7 @@ import { FaEdit, FaLocationArrow, FaUser } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthProvider";
 import { enqueueSnackbar } from "notistack";
+import UserGreeting from "../components/UserGreeting";
 
 const sharedLinks = (
   <>
@@ -58,7 +59,10 @@ const AdminDashboardLayout = () => {
               Logout
             </button>
           </div>
-          <div className="mt-5 md:mt-2 mx-4">
+          <div className="mt-5 lg:mt-0 lg:absolute top-0 lg:w-[1046px]">
+            <UserGreeting />
+          </div>
+          <div className="mt-5 lg:mt-10 md:mt-2 mx-4">
             <Outlet />
           </div>
         </div>

@@ -8,6 +8,7 @@ const AdminDashboard = () => {
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
   const [data, setData] = useState(null);
+  const [penLength, setPenLength] = useState("");
 
   useEffect(() => {
     const config = {
@@ -28,6 +29,22 @@ const AdminDashboard = () => {
       }
     };
 
+    const getPendingApplications = async () => {
+      try {
+        const response = await axios.get(
+          "https://aporvis-server.vercel.app/api/admin/pendingapplications",
+          config
+        );
+        setPenLength(response.data.pendingApplications.length);
+      } catch (error) {
+        enqueueSnackbar(`An error occurred ${error.message}`, {
+          variant: "error",
+        });
+      }
+    };
+
+    getPendingApplications();
+
     getAdminDashboard();
   }, [enqueueSnackbar]);
 
@@ -40,7 +57,12 @@ const AdminDashboard = () => {
         >
           <h2 className="text-xl font-semibold mb-2">Appointments</h2>
           <p className="text-gray-600">
-            Appointment Count : {data ? data.allAppointments.length : ""}
+            Appointment Count :{" "}
+            {data
+              ? data.allAppointments.filter(
+                  (appointment) => appointment.status === "pending"
+                ).length
+              : ""}
           </p>
         </div>
 
@@ -49,9 +71,7 @@ const AdminDashboard = () => {
           onClick={() => navigate("/admin/dashboard/applications")}
         >
           <h2 className="text-xl font-semibold mb-2">Applications</h2>
-          <p className="text-gray-600">
-            Application count: {data ? data.allApplications.length : ""}
-          </p>
+          <p className="text-gray-600">Pendng Applications: {penLength}</p>
         </div>
 
         <div

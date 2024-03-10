@@ -17,7 +17,7 @@ const Appointments = () => {
       );
       // console.log(appointmentInfo);
       const filteredAppointments = response.data.allAppointments.filter(
-        (appointment) => appointment.status !== "approved"
+        (appointment) => appointment.status == "pending"
       );
       setAppointmentInfo(filteredAppointments);
     } catch (error) {
