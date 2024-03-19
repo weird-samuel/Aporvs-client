@@ -94,6 +94,21 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+  const forgotPassword = async (formData) = {
+    try {
+    const res = await axios.post (
+      "https://aporvis-server.vercel.app/api/user/changepassword", formData
+    );
+    } catch (error) {
+    if (res.data.error
+    ) {
+      enqueueSnackbar(res.data.error, {variant:  "error"})
+    } else {
+      
+    } 
+    }
+  }
+
   const login = async (formData) => {
     try {
       const res = await axios.post(
