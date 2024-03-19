@@ -7,21 +7,20 @@ import { enqueueSnackbar } from "notistack";
 const ResetPassword = () => {
   const { register, handleSubmit } = useForm();
 
-  const { sendPasswordResetEmailToUser } = useContext(AuthContext);
+  const { changePassword } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    const email = data.email;
-    // console.log(email, password);
-    sendPasswordResetEmailToUser(email)
+    console.log(data);
+    changePassword(data)
       .then(() => {
-        enqueueSnackbar("Password reset email sent successfully", {
+        enqueueSnackbar("Password changed successfully", {
           variant: "success",
         });
-        navigate("/login");
+        navigate("/dashboard");
       })
       .catch((err) => {
-        enqueueSnackbar("Error sending password reset email: " + err.message, {
+        enqueueSnackbar("Error changing password: " + err.message, {
           variant: "error",
         });
       });
@@ -30,20 +29,23 @@ const ResetPassword = () => {
   return (
     <section className="max-h-screen">
       <div className="my-20">
-        <div className="w-[350px] h-[350px] bg-white p-5 m-auto rounded-lg shadow-2xl">
+        <div className="w-[350px] bg-white px-5 py-10 m-auto rounded-lg shadow-2xl">
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="w-full"
             method="dialog"
           >
             <div className="flex w-full justify-between items-center my-5">
-              <h3 className="font-bold text-2xl">Reset Password</h3>
+              <h3 className="font-bold text-2xl">Change Password</h3>
 
-              <Link to={"/"} className="btn btn-sm btn-circle btn-ghost">
+              <Link
+                to={"/dashboard"}
+                className="btn btn-sm btn-circle btn-ghost"
+              >
                 ✕
               </Link>
             </div>
-            <div className="form-control mt-11">
+            <div className="form-control mt-4 space-y-4">
               <label className="label">
                 <span className="label-text">Email</span>
               </label>
@@ -53,11 +55,23 @@ const ResetPassword = () => {
                 className="input input-bordered"
                 {...register("email")}
               />
+              <input
+                type="password"
+                placeholder="oldPassword"
+                className="input input-bordered"
+                {...register("oldPassword")}
+              />
+              <input
+                type="password"
+                placeholder="newPassword"
+                className="input input-bordered"
+                {...register("newPassword")}
+              />
             </div>
             <div className="form-control mt-4">
               <input
                 type="submit"
-                value={"Send Email"}
+                value={"Change Password"}
                 className="btn bg-[#191D31] hover:bg-[#151D31] text-[#E8E6EA]"
               />
             </div>

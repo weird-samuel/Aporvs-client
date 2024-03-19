@@ -65,6 +65,9 @@ const Profile = ({ user }) => {
             <li>
               <a onClick={handleLogout}>Logout</a>
             </li>
+            <li>
+              <Link to={"/reset-password"}>Change password</Link>
+            </li>
           </ul>
         </div>
       </div>

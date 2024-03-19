@@ -94,20 +94,36 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  const forgotPassword = async (formData) = {
+  const changePassword = async (formData) => {
     try {
-    const res = await axios.post (
-      "https://aporvis-server.vercel.app/api/user/changepassword", formData
-    );
+      const accessToken = localStorage.getItem("accessToken");
+      if (!accessToken) {
+        throw new Error("Access token not found");
+      }
+      const res = await axios.post(
+        "https://aporvis-server.vercel.app/api/user/changepassword",
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      if (res.data.success) {
+        enqueueSnackbar("Password changed successfully", {
+          variant: "success",
+        });
+      } else {
+        enqueueSnackbar(res.data.message, {
+          variant: "error",
+        });
+      }
     } catch (error) {
-    if (res.data.error
-    ) {
-      enqueueSnackbar(res.data.error, {variant:  "error"})
-    } else {
-      
-    } 
+      enqueueSnackbar(`${error.message}`, {
+        variant: "error",
+      });
     }
-  }
+  };
 
   const login = async (formData) => {
     try {
@@ -150,7 +166,7 @@ const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ ...authInfo, login, logout, updateUserProfile }}
+      value={{ ...authInfo, login, logout, updateUserProfile, changePassword }}
     >
       {children}
     </AuthContext.Provider>

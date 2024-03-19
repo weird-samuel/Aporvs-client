@@ -66,14 +66,6 @@ const Login = () => {
                 value={formData.password}
                 onChange={handleChange}
               />
-              <label className="label mt-1">
-                <Link
-                  to={"/reset-password"}
-                  className="label-text-alt link link-hover"
-                >
-                  Forgot password?
-                </Link>
-              </label>
             </div>
 
             <div className="form-control mt-6">
