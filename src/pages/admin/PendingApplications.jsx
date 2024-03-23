@@ -18,7 +18,6 @@ const PendingApplications = () => {
         config
       );
       setUserInfo(response.data.pendingApplications);
-      // console.log(userInfo);
     } catch (error) {
       if (
         error.response &&
@@ -59,7 +58,10 @@ const PendingApplications = () => {
                 <tr key={index}>
                   <td>{user.referenceNumber}</td>
                   <td>{user.processingCountry}</td>
-                  <td>{user.appointmentDate.substring(0, 10)}</td>
+                  <td>
+                    {user.appointmentDate &&
+                      user.appointmentDate.substring(0, 10)}
+                  </td>
                   <td>{user.visaType}</td>
                 </tr>
               ))}
