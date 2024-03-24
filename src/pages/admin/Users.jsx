@@ -97,11 +97,15 @@ const Users = () => {
                   <td className="capitalize">
                     {user.title
                       ? `${user.title} ${user.firstName}, ${user.lastName}`
-                      : "Not Provided by user"}
+                      : "Not Provided"}
                   </td>
-                  <td className="capitalize">{`${user.passportNumber}`}</td>
                   <td className="capitalize">
-                    {user.phoneNumber ? `${user.phoneNumber}` : "null"}
+                    {user.passportNumber
+                      ? `${user.passportNumber}`
+                      : "Not Provided by User"}
+                  </td>
+                  <td className="capitalize">
+                    {user.phoneNumber ? `${user.phoneNumber}` : "Not Provided"}
                   </td>
                   <td className="lowercase">{`${user.email}`}</td>
                   <td className="lowercase">{`${user.role}`}</td>

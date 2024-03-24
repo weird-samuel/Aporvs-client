@@ -54,11 +54,14 @@ const UpdateProfile = () => {
 
   return (
     <div className="flex items-center justify-center w-full p-4">
-      <div className="card shrink-0 w-full shadow-2xl bg-base-100">
-        <form className="card-body" onSubmit={onSubmit}>
-          <div className="flex w-full justify-between items-center my-5">
-            <h2 className="card-title">Update Your Profile</h2>
-          </div>
+      <div className="card shrink-0 w-full shadow-2xl bg-base-100 mb-10">
+        <div className="flex w-full justify-center items-center mt-8 -mb-5 ml-3">
+          <h2 className="card-title">Update Your Profile!</h2>
+        </div>
+        <form
+          className="grid grid-cols-1 gap-4 sm:grid-cols-2 p-10"
+          onSubmit={onSubmit}
+        >
           <div className="form-control">
             <label className="label">
               <span className="label-text">Image</span>
@@ -510,7 +513,7 @@ const UpdateProfile = () => {
               onChange={handleChange}
             />
           </div>
-          <div className="form-control mt-6">
+          <div className="mt-6 justify-center items-center">
             <button className="btn btn-ghost hover:bg-[#191D31] bg-[#191D31] text-[#E8E6EA]">
               Update Profile
             </button>

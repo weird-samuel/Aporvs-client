@@ -59,8 +59,9 @@ const PendingApplications = () => {
                   <td>{user.referenceNumber}</td>
                   <td>{user.processingCountry}</td>
                   <td>
-                    {user.appointmentDate &&
-                      user.appointmentDate.substring(0, 10)}
+                    {user.appointmentDate
+                      ? user.appointmentDate.substring(0, 10)
+                      : "Not Scheduled"}
                   </td>
                   <td>{user.visaType}</td>
                 </tr>

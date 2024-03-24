@@ -1,16 +1,28 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthProvider";
 import { useContext, useEffect, useState } from "react";
+import { enqueueSnackbar } from "notistack";
 // import { enqueueSnackbar } from "notistack";
 
 const UserGreeting = () => {
   const location = useLocation();
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  // console.log(user);
   const [hour, setHour] = useState("");
 
   useEffect(() => {
+    if (user.firstName) {
+      null;
+    } else {
+      enqueueSnackbar("Please update your profile to continue", {
+        variant: "warning",
+      });
+      navigate("/update-profile");
+    }
     getHour();
-  }, [user, location.pathname]);
+  }, [user, location.pathname, navigate]);
 
   const getHour = () => {
     const date = new Date();
