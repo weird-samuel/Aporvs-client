@@ -2,7 +2,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { enqueueSnackbar } from "notistack";
 import axios from "axios";
 import { useState } from "react";
-// import { FcGoogle } from "react-icons/fc";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -12,11 +11,18 @@ const Signup = () => {
     password: "",
   });
 
+  // State variable to track form submission status
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    // Set isSubmitting to true when the form is being submitted
+    setIsSubmitting(true);
+
     try {
       const res = await axios.post(
         "https://aporvis-server.vercel.app/api/user/register",
@@ -40,6 +46,9 @@ const Signup = () => {
           variant: "error",
         });
       }
+    } finally {
+      // Set isSubmitting to false after signup attempt is complete
+      setIsSubmitting(false);
     }
   };
 
@@ -50,7 +59,6 @@ const Signup = () => {
           <form onSubmit={handleSubmit} className="w-full" method="dialog">
             <div className="flex w-full justify-between items-center my-5">
               <h3 className="font-bold text-2xl">Signup</h3>
-
               <Link to={"/"} className="btn btn-sm btn-circle btn-ghost">
                 ✕
               </Link>
@@ -96,8 +104,11 @@ const Signup = () => {
             <div className="form-control mt-6">
               <input
                 type="submit"
-                value={"Sign Up"}
-                className="btn bg-[#191D31] hover:bg-[#151D31] text-[#E8E6EA]"
+                value={isSubmitting ? "Signing Up..." : "Sign Up"}
+                className={`btn bg-[#191D31] hover:bg-[#151D31] text-[#E8E6EA] ${
+                  isSubmitting ? "cursor-not-allowed opacity-95" : ""
+                }`}
+                disabled={isSubmitting}
               />
             </div>
             <p className="text-center my-4">

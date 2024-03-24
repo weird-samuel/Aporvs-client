@@ -18,13 +18,16 @@ const UserDetailsForm = () => {
     referenceNumber: `Ref${uuidv4().slice(0, 5)}`,
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false); // State variable to track form submission status
+
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
-  // console.log(formData);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setIsSubmitting(true); // Set isSubmitting to true when the form is being submitted
+
     try {
       const token = localStorage.getItem("accessToken");
       const response = await axios.post(
@@ -47,6 +50,8 @@ const UserDetailsForm = () => {
       enqueueSnackbar(`Failed to submit form: ${error.message}`, {
         variant: "error",
       });
+    } finally {
+      setIsSubmitting(false); // Set isSubmitting to false after form submission attempt is complete
     }
   };
   return (
@@ -405,8 +410,9 @@ const UserDetailsForm = () => {
         <div className="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
           <input
             type="submit"
-            value={"Continue"}
+            value={isSubmitting ? "Submitting..." : "Continue"} // Change button text based on submission status
             className="btn bg-[#191D31] hover:bg-[#151D31] text-[#E8E6EA]"
+            disabled={isSubmitting} // Disable button while form is being submitted
           />
         </div>
       </form>

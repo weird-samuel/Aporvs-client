@@ -11,13 +11,20 @@ const Login = () => {
     password: "",
   });
 
+  // State variable to track form submission status
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    login(formData);
+    // Set isSubmitting to true when the form is being submitted
+    setIsSubmitting(true);
+    await login(formData);
+    // Set isSubmitting to false after login attempt is complete
+    setIsSubmitting(false);
   };
 
   return user ? (
@@ -71,8 +78,11 @@ const Login = () => {
             <div className="form-control mt-6">
               <input
                 type="submit"
-                value={"Log in"}
-                className="btn bg-[#191D31] hover:bg-[#151D31] text-[#E8E6EA]"
+                value={isSubmitting ? "Logging in..." : "Log in"}
+                className={`btn bg-[#191D31] hover:bg-[#151D31] text-[#E8E6EA] ${
+                  isSubmitting ? "cursor-not-allowed opacity-90" : ""
+                }`}
+                disabled={isSubmitting}
               />
             </div>
             <p className="text-center my-4">

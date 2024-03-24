@@ -11,6 +11,8 @@ const BookAppointment = () => {
     appointmentDate: "",
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false); // State variable to track form submission status
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -24,6 +26,8 @@ const BookAppointment = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true); // Set isSubmitting to true when the form is being submitted
+
     try {
       const response = await axios.post(
         "https://aporvis-server.vercel.app/api/user/bookappointment",
@@ -33,19 +37,23 @@ const BookAppointment = () => {
       enqueueSnackbar(`Reservation Made, ${response.data.message}`, {
         variant: "success",
       });
-      setInterval(() => {
+      setTimeout(() => {
         navigate("/dashboard");
-      }, 1500);
+      }, 300);
     } catch (error) {
       enqueueSnackbar(`Invalid reference number`, { variant: "error" });
+    } finally {
+      setIsSubmitting(false); // Set isSubmitting to false after form submission attempt is complete
     }
   };
+
   return (
     <section>
       <UserGreeting />
       <div className="p-4">
         <section className="border border-[#191D31] rounded-lg p-4 max-w-md flex mx-auto mt-10">
           <form method="post" onSubmit={handleSubmit} className="w-full m-auto">
+            {/* Form fields */}
             <div className="mb-4">
               <label
                 className="block text-sm font-medium mb-2"
@@ -84,8 +92,9 @@ const BookAppointment = () => {
             <div className="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
               <input
                 type="submit"
-                value={"Continue"}
+                value={isSubmitting ? "Submitting..." : "Continue"} // Change button text based on submission status
                 className="btn bg-[#191D31] hover:bg-[#151D31] text-[#E8E6EA]"
+                disabled={isSubmitting} // Disable button while form is being submitted
               />
             </div>
           </form>
