@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthProvider";
@@ -6,24 +6,28 @@ import { enqueueSnackbar } from "notistack";
 
 const ResetPassword = () => {
   const { register, handleSubmit } = useForm();
-
   const { changePassword } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const onSubmit = (data) => {
-    console.log(data);
-    changePassword(data)
-      .then(() => {
-        enqueueSnackbar("Password changed successfully", {
-          variant: "success",
-        });
-        navigate("/dashboard");
-      })
-      .catch((err) => {
-        enqueueSnackbar("Error changing password: " + err.message, {
-          variant: "error",
-        });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const onSubmit = async (data) => {
+    if (isSubmitting) return; // If already submitting, ignore duplicate submissions
+    setIsSubmitting(true);
+    try {
+      // console.log(data);
+      await changePassword(data);
+      enqueueSnackbar("Password changed successfully", {
+        variant: "success",
       });
+      navigate("/dashboard");
+    } catch (err) {
+      enqueueSnackbar("Error changing password: " + err.message, {
+        variant: "error",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -73,6 +77,7 @@ const ResetPassword = () => {
                 type="submit"
                 value={"Change Password"}
                 className="btn bg-[#191D31] hover:bg-[#151D31] text-[#E8E6EA]"
+                disabled={isSubmitting} // Disable the button while submitting
               />
             </div>
           </form>
