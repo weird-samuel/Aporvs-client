@@ -5,6 +5,22 @@ import { enqueueSnackbar } from "notistack";
 import { useNavigate } from "react-router-dom";
 
 const BookAppointment = () => {
+  function getCurrentDate() {
+    const today = new Date();
+    const year = today.getFullYear();
+    let month = today.getMonth() + 1;
+    let day = today.getDate();
+
+    // Add leading zero if month or day is single digit
+    if (month < 10) {
+      month = "0" + month;
+    }
+    if (day < 10) {
+      day = "0" + day;
+    }
+
+    return `${year}-${month}-${day}`;
+  }
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     referenceNumber: "",
@@ -84,6 +100,7 @@ const BookAppointment = () => {
                   name="appointmentDate"
                   id="appointmentDate"
                   value={formData.appointmentDate}
+                  min={getCurrentDate()} // Set the min attribute to today's date
                   onChange={handleChange}
                   required
                 />

@@ -5,6 +5,23 @@ import { useNavigate } from "react-router-dom";
 import { enqueueSnackbar } from "notistack";
 
 const UpdateProfile = () => {
+  function getCurrentDate() {
+    const today = new Date();
+    const year = today.getFullYear();
+    let month = today.getMonth() + 1;
+    let day = today.getDate();
+
+    // Add leading zero if month or day is single digit
+    if (month < 10) {
+      month = "0" + month;
+    }
+    if (day < 10) {
+      day = "0" + day;
+    }
+
+    return `${year}-${month}-${day}`;
+  }
+
   const { updateUserProfile } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     image: "",
@@ -384,6 +401,7 @@ const UpdateProfile = () => {
               name="dateOfBirth"
               className="input input-bordered"
               value={formData.dateOfBirth}
+              max={getCurrentDate()} // Set the min attribute to today's date
               onChange={handleChange}
             />
           </div>
@@ -447,6 +465,7 @@ const UpdateProfile = () => {
             </label>
             <input
               type="date"
+              min={getCurrentDate()} // Set the min attribute to today's date
               name="passportExpiryDate"
               className="input input-bordered"
               value={formData.passportExpiryDate}
