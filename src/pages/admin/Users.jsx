@@ -75,51 +75,55 @@ const Users = () => {
 
   getAllUsers();
   return (
-    <section className="overflow-x-auto">
+    <section className="">
       <div className="mb-6">
         <h2 className="font-bold text-xl">All Users:</h2>
       </div>
-      <table className="table table-lg">
-        <thead>
-          <tr className="text-[#191D31] text-[15px] font-bold">
-            <th>User's Full Name</th>
-            <th>Passport Number</th>
-            <th>Phone Number</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users
-            ? users.map((user, index) => (
-                <tr key={index} className="capitalize">
-                  <td className="capitalize">
-                    {user.title
-                      ? `${user.title} ${user.firstName}, ${user.lastName}`
-                      : "Not Provided"}
-                  </td>
-                  <td className="capitalize">
-                    {user.passportNumber
-                      ? `${user.passportNumber}`
-                      : "Not Provided by User"}
-                  </td>
-                  <td className="capitalize">
-                    {user.phoneNumber ? `${user.phoneNumber}` : "Not Provided"}
-                  </td>
-                  <td className="lowercase">{`${user.email}`}</td>
-                  <td className="lowercase">{`${user.role}`}</td>
-                  <td>
-                    <IoTrash
-                      className="text-red-600 cursor-pointer"
-                      onClick={() => deleteUser(user._id)}
-                    />
-                  </td>
-                </tr>
-              ))
-            : null}
-        </tbody>
-      </table>
+      <div className="overflow-x-auto">
+        <table className="table table-lg">
+          <thead>
+            <tr className="text-[#191D31] text-[15px] font-bold">
+              <th>User's Full Name</th>
+              <th>Passport Number</th>
+              <th>Phone Number</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users
+              ? users.map((user, index) => (
+                  <tr key={index} className="capitalize">
+                    <td className="capitalize">
+                      {user.title
+                        ? `${user.title} ${user.firstName}, ${user.lastName}`
+                        : "Not Provided"}
+                    </td>
+                    <td className="capitalize">
+                      {user.passportNumber
+                        ? `${user.passportNumber}`
+                        : "Not Provided by User"}
+                    </td>
+                    <td className="capitalize">
+                      {user.phoneNumber
+                        ? `${user.phoneNumber}`
+                        : "Not Provided"}
+                    </td>
+                    <td className="lowercase">{`${user.email}`}</td>
+                    <td className="lowercase">{`${user.role}`}</td>
+                    <td>
+                      <IoTrash
+                        className="text-red-600 cursor-pointer"
+                        onClick={() => deleteUser(user._id)}
+                      />
+                    </td>
+                  </tr>
+                ))
+              : null}
+          </tbody>
+        </table>
+      </div>
     </section>
   );
 };

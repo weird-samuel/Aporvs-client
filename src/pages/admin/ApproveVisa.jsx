@@ -70,50 +70,52 @@ const ApproveVisa = () => {
         <h2 className="font-bold text-xl capitalize">Approve Visa</h2>
       </div>
       {error && <p>{error}</p>}
-      <table className="table table-lg">
-        <thead>
-          <tr className="text-[#191D31] text-[15px] font-bold">
-            <th>Id</th>
-            <th>Reference Number</th>
-            <th>Processing Country</th>
-            <th>Visa Type</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {pendingApplications &&
-            pendingApplications.map((user, index) => (
-              <tr key={index} className="capitalize">
-                <td>{user._id}</td>
-                <td className="capitalize">
-                  {user ? `${user.referenceNumber}` : "Not Provided by user"}
-                </td>
-                <td className="capitalize">{`${user.processingCountry}`}</td>
-                <td className="capitalize">
-                  {user ? `${user.visaType}` : "null"}
-                </td>
-                <td className="flex gap-4">
-                  <button
-                    className="text-green-600 cursor-pointer btn"
-                    onClick={() =>
-                      handleApproveReject(user.referenceNumber, "approved")
-                    }
-                  >
-                    Approve
-                  </button>
-                  <button
-                    className="text-red-600 cursor-pointer btn"
-                    onClick={() =>
-                      handleApproveReject(user.referenceNumber, "rejected")
-                    }
-                  >
-                    Reject
-                  </button>
-                </td>
-              </tr>
-            ))}
-        </tbody>
-      </table>
+      <div className="overflow-x-auto">
+        <table className="table table-lg">
+          <thead>
+            <tr className="text-[#191D31] text-[15px] font-bold">
+              <th>Id</th>
+              <th>Reference Number</th>
+              <th>Processing Country</th>
+              <th>Visa Type</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {pendingApplications &&
+              pendingApplications.map((user, index) => (
+                <tr key={index} className="capitalize">
+                  <td>{user._id}</td>
+                  <td className="capitalize">
+                    {user ? `${user.referenceNumber}` : "Not Provided by user"}
+                  </td>
+                  <td className="capitalize">{`${user.processingCountry}`}</td>
+                  <td className="capitalize">
+                    {user ? `${user.visaType}` : "null"}
+                  </td>
+                  <td className="flex gap-4">
+                    <button
+                      className="text-green-600 cursor-pointer btn"
+                      onClick={() =>
+                        handleApproveReject(user.referenceNumber, "approved")
+                      }
+                    >
+                      Approve
+                    </button>
+                    <button
+                      className="text-red-600 cursor-pointer btn"
+                      onClick={() =>
+                        handleApproveReject(user.referenceNumber, "rejected")
+                      }
+                    >
+                      Reject
+                    </button>
+                  </td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
+      </div>
     </section>
   );
 };
